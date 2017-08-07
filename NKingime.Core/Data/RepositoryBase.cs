@@ -11,17 +11,17 @@ namespace NKingime.Core.Data
     /// 数据仓储基类
     /// </summary>
     /// <typeparam name="TEntity">数据实体类型</typeparam>
-    public class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
+    public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
         /// <summary>
         /// 工作单元上下文接口
         /// </summary>
-        public IUnitOfWorkContext WorkContext { get; }
+        public abstract IUnitOfWorkContext WorkContext { get; }
 
         /// <summary>
         /// 当前查询数据实体集合
         /// </summary>
-        public IQueryable<TEntity> DbEntities
+        public virtual IQueryable<TEntity> DbEntities
         {
             get
             {
@@ -35,7 +35,7 @@ namespace NKingime.Core.Data
         /// <param name="entity">数据实体</param>
         /// <param name="saveChange">是否执行保存</param>
         /// <returns></returns>
-        public int Save(TEntity entity, bool saveChange = true)
+        public virtual int Save(TEntity entity, bool saveChange = true)
         {
             WorkContext.RegisterNew(entity);
             return saveChange ? WorkContext.Commit() : 0;
@@ -47,7 +47,7 @@ namespace NKingime.Core.Data
         /// <param name="entities">数据实体集合</param>
         /// <param name="saveChange">是否执行保存</param>
         /// <returns></returns>
-        public int Save(IEnumerable<TEntity> entities, bool saveChange = true)
+        public virtual int Save(IEnumerable<TEntity> entities, bool saveChange = true)
         {
             WorkContext.RegisterNew(entities);
             return saveChange ? WorkContext.Commit() : 0;
@@ -59,7 +59,7 @@ namespace NKingime.Core.Data
         /// <param name="entity">数据实体</param>
         /// <param name="saveChange">是否执行删除</param>
         /// <returns></returns>
-        public int Delete(TEntity entity, bool saveChange = true)
+        public virtual int Delete(TEntity entity, bool saveChange = true)
         {
             WorkContext.RegisterDeleted(entity);
             return saveChange ? WorkContext.Commit() : 0;
@@ -71,7 +71,7 @@ namespace NKingime.Core.Data
         /// <param name="entities">数据实体集合</param>
         /// <param name="saveChange">是否执行删除</param>
         /// <returns></returns>
-        public int Delete(IEnumerable<TEntity> entities, bool saveChange = true)
+        public virtual int Delete(IEnumerable<TEntity> entities, bool saveChange = true)
         {
             WorkContext.RegisterDeleted(entities);
             return saveChange ? WorkContext.Commit() : 0;
@@ -84,7 +84,7 @@ namespace NKingime.Core.Data
         /// <param name="key">主键值</param>
         /// <param name="saveChange">是否执行删除</param>
         /// <returns></returns>
-        public int Delete<TKey>(TKey key, bool saveChange = true)
+        public virtual int Delete<TKey>(TKey key, bool saveChange = true)
         {
             var entity = GetById(key);
             return Delete(entity, saveChange);
@@ -96,7 +96,7 @@ namespace NKingime.Core.Data
         /// <param name="entity">数据实体</param>
         /// <param name="saveChange">是否执行更新</param>
         /// <returns></returns>
-        public int Update(TEntity entity, bool saveChange = true)
+        public virtual int Update(TEntity entity, bool saveChange = true)
         {
             WorkContext.RegisterModified(entity);
             return saveChange ? WorkContext.Commit() : 0;
@@ -108,7 +108,7 @@ namespace NKingime.Core.Data
         /// <param name="entities">数据实体集合</param>
         /// <param name="saveChange">是否执行更新</param>
         /// <returns></returns>
-        public int Update(IEnumerable<TEntity> entities, bool saveChange = true)
+        public virtual int Update(IEnumerable<TEntity> entities, bool saveChange = true)
         {
             WorkContext.RegisterModified(entities);
             return saveChange ? WorkContext.Commit() : 0;
@@ -120,7 +120,7 @@ namespace NKingime.Core.Data
         /// <typeparam name="TKey">主键类型</typeparam>
         /// <param name="key">主键值</param>
         /// <returns></returns>
-        public TEntity GetById<TKey>(TKey key)
+        public virtual TEntity GetById<TKey>(TKey key)
         {
             return WorkContext.Set<TEntity>().Find(key);
         }

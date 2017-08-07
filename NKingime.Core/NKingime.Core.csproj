@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\EFRepository.cs" />
     <Compile Include="Data\EntityBase.cs" />
     <Compile Include="Data\IEntity.cs" />
     <Compile Include="Data\IRepository.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Data\IUnitOfWorkContext.cs" />
     <Compile Include="Data\RepositoryBase.cs" />
     <Compile Include="Data\UnitOfWorkContextBase.cs" />
+    <Compile Include="Data\UnitOfWorkContextManage.cs" />
     <Compile Include="Generic\IDependency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
