@@ -1,5 +1,4 @@
-﻿using NKingime.Core.Generic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +8,26 @@ namespace NKingime.Core.Data
 {
 
     /// <summary>
-    /// 数据仓储接口
+    /// 数据仓储基类
     /// </summary>
     /// <typeparam name="TEntity">数据实体类型</typeparam>
-    public interface IRepository<TEntity> : IDependency where TEntity : IEntity
+    public class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
         /// <summary>
         /// 工作单元上下文接口
         /// </summary>
-        IUnitOfWorkContext WorkContext { get; }
+        public IUnitOfWorkContext WorkContext { get; }
 
         /// <summary>
         /// 当前查询数据实体集合
         /// </summary>
-        IQueryable<TEntity> DbEntities { get; }
+        public IQueryable<TEntity> DbEntities
+        {
+            get
+            {
+                return WorkContext.Set<TEntity>();
+            }
+        }
 
         /// <summary>
         /// 保存单个数据实体（新增）
@@ -30,7 +35,11 @@ namespace NKingime.Core.Data
         /// <param name="entity">数据实体</param>
         /// <param name="saveChange">是否执行保存</param>
         /// <returns></returns>
-        int Save(TEntity entity, bool saveChange = true);
+        public int Save(TEntity entity, bool saveChange = true)
+        {
+            WorkContext.RegisterNew(entity);
+            return saveChange ? WorkContext.Commit() : 0;
+        }
 
         /// <summary>
         /// 保存数据实体集合（新增）
@@ -38,7 +47,11 @@ namespace NKingime.Core.Data
         /// <param name="entities">数据实体集合</param>
         /// <param name="saveChange">是否执行保存</param>
         /// <returns></returns>
-        int Save(IEnumerable<TEntity> entities, bool saveChange = true);
+        public int Save(IEnumerable<TEntity> entities, bool saveChange = true)
+        {
+            WorkContext.RegisterNew(entities);
+            return saveChange ? WorkContext.Commit() : 0;
+        }
 
         /// <summary>
         /// 删除单个数据实体
@@ -46,7 +59,11 @@ namespace NKingime.Core.Data
         /// <param name="entity">数据实体</param>
         /// <param name="saveChange">是否执行删除</param>
         /// <returns></returns>
-        int Delete(TEntity entity, bool saveChange = true);
+        public int Delete(TEntity entity, bool saveChange = true)
+        {
+            WorkContext.RegisterDeleted(entity);
+            return saveChange ? WorkContext.Commit() : 0;
+        }
 
         /// <summary>
         /// 删除数据实体集合
@@ -54,7 +71,11 @@ namespace NKingime.Core.Data
         /// <param name="entities">数据实体集合</param>
         /// <param name="saveChange">是否执行删除</param>
         /// <returns></returns>
-        int Delete(IEnumerable<TEntity> entities, bool saveChange = true);
+        public int Delete(IEnumerable<TEntity> entities, bool saveChange = true)
+        {
+            WorkContext.RegisterDeleted(entities);
+            return saveChange ? WorkContext.Commit() : 0;
+        }
 
         /// <summary>
         /// 根据主键删除单个数据实体
@@ -63,7 +84,11 @@ namespace NKingime.Core.Data
         /// <param name="key">主键值</param>
         /// <param name="saveChange">是否执行删除</param>
         /// <returns></returns>
-        int Delete<TKey>(TKey key, bool saveChange = true);
+        public int Delete<TKey>(TKey key, bool saveChange = true)
+        {
+            var entity = GetById(key);
+            return Delete(entity, saveChange);
+        }
 
         /// <summary>
         /// 更新单个数据实体
@@ -71,7 +96,11 @@ namespace NKingime.Core.Data
         /// <param name="entity">数据实体</param>
         /// <param name="saveChange">是否执行更新</param>
         /// <returns></returns>
-        int Update(TEntity entity, bool saveChange = true);
+        public int Update(TEntity entity, bool saveChange = true)
+        {
+            WorkContext.RegisterModified(entity);
+            return saveChange ? WorkContext.Commit() : 0;
+        }
 
         /// <summary>
         /// 更新数据实体集合
@@ -79,7 +108,11 @@ namespace NKingime.Core.Data
         /// <param name="entities">数据实体集合</param>
         /// <param name="saveChange">是否执行更新</param>
         /// <returns></returns>
-        int Update(IEnumerable<TEntity> entities, bool saveChange = true);
+        public int Update(IEnumerable<TEntity> entities, bool saveChange = true)
+        {
+            WorkContext.RegisterModified(entities);
+            return saveChange ? WorkContext.Commit() : 0;
+        }
 
         /// <summary>
         /// 根据主键获取单个数据实体
@@ -87,6 +120,9 @@ namespace NKingime.Core.Data
         /// <typeparam name="TKey">主键类型</typeparam>
         /// <param name="key">主键值</param>
         /// <returns></returns>
-        TEntity GetById<TKey>(TKey key);
+        public TEntity GetById<TKey>(TKey key)
+        {
+            return WorkContext.Set<TEntity>().Find(key);
+        }
     }
 }
