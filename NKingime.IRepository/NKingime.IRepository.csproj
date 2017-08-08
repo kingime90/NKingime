@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B177BC3A-9052-498A-B2B7-D07E06AF8EAE}</ProjectGuid>
+    <ProjectGuid>{8913F6C6-84A0-4224-8F0C-51FB876E4C76}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NKingime.Core</RootNamespace>
-    <AssemblyName>NKingime.Core</AssemblyName>
+    <RootNamespace>NKingime.IRepository</RootNamespace>
+    <AssemblyName>NKingime.IRepository</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,20 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,26 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DbContextManage.cs" />
-    <Compile Include="Data\EFRepository.cs" />
-    <Compile Include="Data\EntityBase.cs" />
-    <Compile Include="Data\IEntity.cs" />
-    <Compile Include="Data\IRepository.cs" />
-    <Compile Include="Data\IUnitOfWork.cs" />
-    <Compile Include="Data\IUnitOfWorkContext.cs" />
-    <Compile Include="Data\RepositoryBase.cs" />
-    <Compile Include="Data\UnitOfWorkContextBase.cs" />
-    <Compile Include="Data\UnitOfWorkContextManage.cs" />
-    <Compile Include="Generic\IDependency.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mvc\" />
-    <Folder Include="Util\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <ProjectReference Include="..\NKingime.Core\NKingime.Core.csproj">
+      <Project>{b177bc3a-9052-498a-b2b7-d07e06af8eae}</Project>
+      <Name>NKingime.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKingime.Entity\NKingime.Entity.csproj">
+      <Project>{a7377d18-0d71-40c2-8614-d55c68672a71}</Project>
+      <Name>NKingime.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

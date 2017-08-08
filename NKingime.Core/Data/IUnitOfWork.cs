@@ -11,7 +11,7 @@ namespace NKingime.Core.Data
     /// <summary>
     /// 工作单元接口
     /// </summary>
-    public interface IUnitOfWork : IDependency
+    public interface IUnitOfWork
     {
 
         /// <summary>
