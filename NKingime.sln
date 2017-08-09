@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKingime.IRepository", "NKi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKingime.IRepository.Tests", "NKingime.IRepository.Tests\NKingime.IRepository.Tests.csproj", "{A52CADAE-039A-47B9-88CB-710EEFA3E82E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKingime.Core.Tests", "NKingime.Core.Tests\NKingime.Core.Tests.csproj", "{1C0153DF-61F6-4867-A5A2-671BB6DC1FBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{A52CADAE-039A-47B9-88CB-710EEFA3E82E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A52CADAE-039A-47B9-88CB-710EEFA3E82E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A52CADAE-039A-47B9-88CB-710EEFA3E82E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C0153DF-61F6-4867-A5A2-671BB6DC1FBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C0153DF-61F6-4867-A5A2-671BB6DC1FBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C0153DF-61F6-4867-A5A2-671BB6DC1FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C0153DF-61F6-4867-A5A2-671BB6DC1FBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,5 +79,6 @@ Global
 		{8F263DB3-9668-41A7-91E8-141CE6EA4A2E} = {1815A830-E5A0-49F0-9D2A-AE8493660A35}
 		{8913F6C6-84A0-4224-8F0C-51FB876E4C76} = {1815A830-E5A0-49F0-9D2A-AE8493660A35}
 		{A52CADAE-039A-47B9-88CB-710EEFA3E82E} = {D39CA98E-9B4E-4EBC-B03E-2D50089CAB1D}
+		{1C0153DF-61F6-4867-A5A2-671BB6DC1FBF} = {D39CA98E-9B4E-4EBC-B03E-2D50089CAB1D}
 	EndGlobalSection
 EndGlobal
