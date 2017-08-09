@@ -1,8 +1,8 @@
 ﻿using NKingime.Core.Data;
+using NKingime.DataAccess.IRepository;
 using NKingime.Entity.Mapping;
-using NKingime.IRepository;
 
-namespace NKingime.Repository
+namespace NKingime.DataAccess.Repository
 {
     /// <summary>
     /// 用户数据仓储

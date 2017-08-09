@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace NKingime.Core.Data
 {
-
     /// <summary>
     /// 数据仓储基类
     /// </summary>
     /// <typeparam name="TEntity">数据实体类型</typeparam>
     public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
+
         /// <summary>
         /// 工作单元上下文接口
         /// </summary>

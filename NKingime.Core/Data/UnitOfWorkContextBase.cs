@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace NKingime.Core.Data
 {
-
     /// <summary>
     /// 工作单元上下文基类
     /// </summary>
     public abstract class UnitOfWorkContextBase : IUnitOfWorkContext
     {
+
         /// <summary>
         /// 数据库上下文
         /// </summary>

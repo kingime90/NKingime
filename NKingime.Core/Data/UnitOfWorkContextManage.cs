@@ -7,6 +7,7 @@ namespace NKingime.Core.Data
     /// </summary>
     public class UnitOfWorkContextManage
     {
+
         private static Func<IUnitOfWorkContext> _workContext;
 
         /// <summary>

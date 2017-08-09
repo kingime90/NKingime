@@ -8,6 +8,7 @@ namespace NKingime.Core.Data
     /// </summary>
     public class DbContextManage
     {
+
         private static Func<DbContext> _dbContext;
 
         /// <summary>

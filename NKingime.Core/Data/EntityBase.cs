@@ -12,6 +12,7 @@ namespace NKingime.Core.Data
     /// <typeparam name="TKey">主键类型</typeparam>
     public class EntityBase<TKey> : IEntity
     {
+
         /// <summary>
         /// 主键
         /// </summary>

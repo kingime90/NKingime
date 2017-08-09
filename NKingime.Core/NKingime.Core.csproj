@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Data\DbContextManage.cs" />
     <Compile Include="Data\EFRepository.cs" />
+    <Compile Include="Data\EFUnitOfWorkContext.cs" />
     <Compile Include="Data\EntityBase.cs" />
     <Compile Include="Data\IEntity.cs" />
     <Compile Include="Data\IRepository.cs" />

@@ -12,6 +12,7 @@ namespace NKingime.Core.Data
     /// <typeparam name="TEntity"></typeparam>
     public class EFRepository<TEntity> : RepositoryBase<TEntity> where TEntity : class, IEntity
     {
+
         private IUnitOfWorkContext _workContext;
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="workContext"></param>
+        /// <param name="workContext">工作单元上下文接口</param>
         public EFRepository(IUnitOfWorkContext workContext)
         {
             _workContext = workContext;

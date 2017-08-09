@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("NKingime.IRepository")]
+[assembly: AssemblyTitle("NKingime.DataAccess.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("NKingime.IRepository")]
+[assembly: AssemblyProduct("NKingime.DataAccess.Tests")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("8913f6c6-84a0-4224-8f0c-51fb876e4c76")]
+[assembly: Guid("7f141bcd-38bf-4547-9dc0-f8766f8c1d61")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
