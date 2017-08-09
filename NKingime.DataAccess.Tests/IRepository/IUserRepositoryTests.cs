@@ -2,6 +2,11 @@
 using NUnit.Framework;
 using NKingime.Core.Data;
 using NKingime.DataAccess.DbContext;
+using Autofac;
+using NKingime.Core.Generic;
+using System.Reflection;
+using NKingime.DataAccess.IRepository;
+using NKingime.Entity.Mapping;
 
 namespace NKingime.DataAccess.Tests.IRepository
 {
@@ -11,6 +16,7 @@ namespace NKingime.DataAccess.Tests.IRepository
     [TestFixture]
     public class IUserRepositoryTests
     {
+        private static IContainer container;
 
         /// <summary>
         /// 初始化
@@ -18,6 +24,13 @@ namespace NKingime.DataAccess.Tests.IRepository
         [SetUp]
         public static void Initialize()
         {
+            var builder = new ContainerBuilder();
+            var dependencyType = typeof(IDependency);
+            var repositoryAss = Assembly.Load("NKingime.DataAccess");
+            var assemblies = new Assembly[] { repositoryAss };
+            builder.RegisterAssemblyTypes(assemblies).Where(type => dependencyType.IsAssignableFrom(type) && !type.IsAbstract).AsImplementedInterfaces().InstancePerLifetimeScope();
+            container = builder.Build();
+            //
             UnitOfWorkContextManage.Register(() => new EFUnitOfWorkContext());
             DbContextManage.Register(() => new NKingimeDb());
         }
@@ -28,7 +41,18 @@ namespace NKingime.DataAccess.Tests.IRepository
         [Test]
         public void SaveTest()
         {
-
+            var userRepository = container.Resolve<IUserRepository>();
+            var user = new User
+            {
+                Username = "dev012",
+                Password = "123456",
+                Nickname = "dev011",
+                Gender = 1,
+                Mobile = "13535555555",
+                RegisterDate = DateTime.Now
+            };
+            var result = userRepository.Save(user, true);
+            Assert.IsTrue(result > 0);
         }
     }
 }
