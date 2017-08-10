@@ -14,6 +14,11 @@ namespace NKingime.Core.Data
     {
 
         /// <summary>
+        /// 数据库上下文
+        /// </summary>
+        DbContext DbContext { get; }
+
+        /// <summary>
         /// 获取数据实体集合
         /// </summary>
         /// <typeparam name="TEntity">数据实体类型</typeparam>

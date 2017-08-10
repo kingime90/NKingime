@@ -37,10 +37,10 @@ namespace NKingime.DataAccess.DbContext
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<User>().ToTable("User").HasKey(m => m.Id);
         }
 
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
     }
 }

@@ -63,7 +63,7 @@ namespace NKingime.Core.Data
         /// <param name="key">主键值</param>
         /// <param name="saveChange">是否执行删除</param>
         /// <returns></returns>
-        int Delete<TKey>(TKey key, bool saveChange = true);
+        int DeleteById<TKey>(TKey key, bool saveChange = true);
 
         /// <summary>
         /// 更新单个数据实体

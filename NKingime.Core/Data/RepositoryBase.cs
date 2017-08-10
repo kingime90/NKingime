@@ -84,7 +84,7 @@ namespace NKingime.Core.Data
         /// <param name="key">主键值</param>
         /// <param name="saveChange">是否执行删除</param>
         /// <returns></returns>
-        public virtual int Delete<TKey>(TKey key, bool saveChange = true)
+        public virtual int DeleteById<TKey>(TKey key, bool saveChange = true)
         {
             var entity = GetById(key);
             return Delete(entity, saveChange);

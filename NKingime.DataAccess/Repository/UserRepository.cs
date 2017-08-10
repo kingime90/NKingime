@@ -10,5 +10,21 @@ namespace NKingime.DataAccess.Repository
     public class UserRepository : EFRepository<User>, IUserRepository
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public UserRepository()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="workContext"></param>
+        public UserRepository(IUnitOfWorkContext workContext) : base(workContext)
+        {
+
+        }
     }
 }
