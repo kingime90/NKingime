@@ -19,13 +19,17 @@ namespace NKingime.Core.Data
         /// </summary>
         public abstract DbContext DbContext { get; }
 
+        private bool _isCommitted = false;
+
         /// <summary>
         /// 工作单元是否已被提交
         /// </summary>
         public bool IsCommitted
         {
-            get;
-            private set;
+            get
+            {
+                return _isCommitted;
+            }
         }
 
         /// <summary>
@@ -40,16 +44,16 @@ namespace NKingime.Core.Data
             }
             //
             int result = DbContext.SaveChanges();
-            IsCommitted = true;
+            _isCommitted = true;
             return result;
         }
 
         /// <summary>
-        /// /回滚工作单元到未提交
+        /// 回滚工作单元到未提交
         /// </summary>
         public void Rollback()
         {
-            IsCommitted = false;
+            _isCommitted = false;
         }
 
         /// <summary>
@@ -81,7 +85,7 @@ namespace NKingime.Core.Data
         public void RegisterDeleted<TEntity>(TEntity entity) where TEntity : class, IEntity
         {
             Entry(entity).State = EntityState.Deleted;
-            IsCommitted = false;
+            _isCommitted = false;
         }
 
         /// <summary>
@@ -118,7 +122,7 @@ namespace NKingime.Core.Data
                 DbContext.Set<TEntity>().Attach(entity);
             }
             entityEntry.State = EntityState.Modified;
-            IsCommitted = false;
+            _isCommitted = false;
         }
 
         /// <summary>
@@ -154,7 +158,7 @@ namespace NKingime.Core.Data
             {
                 entityEntry.State = EntityState.Added;
             }
-            IsCommitted = false;
+            _isCommitted = false;
         }
 
         /// <summary>
