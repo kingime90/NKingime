@@ -1,4 +1,4 @@
-﻿using NKingime.Core.Generic;
+﻿using NKingime.Core.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;

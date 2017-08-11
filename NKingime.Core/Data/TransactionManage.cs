@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using NKingime.Core.Data;
-using NKingime.Core.Generic;
+using NKingime.Core.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,14 +44,7 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public T Create<T>() where T : IRepository
         {
-            var builder = new ContainerBuilder();
-            var dependencyType = typeof(IDependency);
-            var repositoryAss = Assembly.Load("NKingime.DataAccess");
-            var coreAss = Assembly.Load("NKingime.Core");
-            var assemblies = new Assembly[] { repositoryAss, coreAss };
-            builder.RegisterAssemblyTypes(assemblies).Where(type => dependencyType.IsAssignableFrom(type) && !type.IsAbstract).AsImplementedInterfaces().InstancePerLifetimeScope();
-            var container = builder.Build();
-            return container.Resolve<T>(new TypedParameter(typeof(IUnitOfWorkContext), _workContext));
+            return IocContainerManage.IocContainer.Resolve<T>(new TypedParameter(typeof(IUnitOfWorkContext), _workContext));
         }
     }
 }

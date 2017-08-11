@@ -65,6 +65,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -87,10 +88,13 @@
     <Compile Include="Data\TransactionManage.cs" />
     <Compile Include="Data\UnitOfWorkContextBase.cs" />
     <Compile Include="Data\UnitOfWorkContextManage.cs" />
-    <Compile Include="Generic\IDependency.cs" />
+    <Compile Include="Ioc\IocContainerManage.cs" />
+    <Compile Include="Ioc\IDependency.cs" />
+    <Compile Include="Ioc\DependencyModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Generic\" />
     <Folder Include="Mvc\" />
     <Folder Include="Util\" />
   </ItemGroup>

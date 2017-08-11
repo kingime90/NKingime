@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NKingime.Core.Generic
+namespace NKingime.Core.Ioc
 {
     /// <summary>
     /// 依赖注入接口

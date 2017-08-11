@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using NKingime.Core.Data;
-using NKingime.Core.Generic;
+using NKingime.Core.Ioc;
 using NKingime.DataAccess.DbContext;
 using NKingime.DataAccess.IRepository;
 using NUnit.Framework;
@@ -19,7 +19,6 @@ namespace NKingime.Core.Tests.Data
     [TestFixture]
     public class ITransactionManageTests
     {
-        private static IContainer container;
         private static ITransactionManage transactionManage;
         /// <summary>
         /// 初始化
@@ -27,18 +26,12 @@ namespace NKingime.Core.Tests.Data
         [SetUp]
         public static void Initialize()
         {
-            var builder = new ContainerBuilder();
-            var dependencyType = typeof(IDependency);
-            var repositoryAss = Assembly.Load("NKingime.DataAccess");
-            var coreAss = Assembly.Load("NKingime.Core");
-            var assemblies = new Assembly[] { repositoryAss, coreAss };
-            builder.RegisterAssemblyTypes(assemblies).Where(type => dependencyType.IsAssignableFrom(type) && !type.IsAbstract).AsImplementedInterfaces().InstancePerLifetimeScope();
-            container = builder.Build();
+            IocContainerManage.Register();
             //
             UnitOfWorkContextManage.Register(() => new EFUnitOfWorkContext());
             DbContextManage.Register(() => new NKingimeDb());
             //
-            transactionManage = container.Resolve<ITransactionManage>();
+            transactionManage = IocContainerManage.IocContainer.Resolve<ITransactionManage>();
         }
 
         /// <summary>
@@ -50,6 +43,10 @@ namespace NKingime.Core.Tests.Data
             var userRepository = transactionManage.Create<IUserRepository>();
             int id = 1;
             var user = userRepository.GetById(id);
+            //userRepository.WorkContext.Commit();
+            //userRepository.WorkContext.DbContext
+            //transactionManage.WorkContext.Commit();
+            //transactionManage.WorkContext.DbContext
         }
     }
 }

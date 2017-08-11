@@ -3,10 +3,10 @@ using NUnit.Framework;
 using NKingime.Core.Data;
 using NKingime.DataAccess.DbContext;
 using Autofac;
-using NKingime.Core.Generic;
 using System.Reflection;
 using NKingime.DataAccess.IRepository;
 using NKingime.Entity.Mapping;
+using NKingime.Core.Ioc;
 
 namespace NKingime.DataAccess.Tests.IRepository
 {
@@ -16,7 +16,6 @@ namespace NKingime.DataAccess.Tests.IRepository
     [TestFixture]
     public class IUserRepositoryTests
     {
-        private static IContainer container;
         private static IUserRepository userRepository;
 
         /// <summary>
@@ -25,17 +24,12 @@ namespace NKingime.DataAccess.Tests.IRepository
         [SetUp]
         public static void Initialize()
         {
-            var builder = new ContainerBuilder();
-            var dependencyType = typeof(IDependency);
-            var repositoryAss = Assembly.Load("NKingime.DataAccess");
-            var assemblies = new Assembly[] { repositoryAss };
-            builder.RegisterAssemblyTypes(assemblies).Where(type => dependencyType.IsAssignableFrom(type) && !type.IsAbstract).AsImplementedInterfaces().InstancePerLifetimeScope();
-            container = builder.Build();
+            IocContainerManage.Register();
             //
             UnitOfWorkContextManage.Register(() => new EFUnitOfWorkContext());
             DbContextManage.Register(() => new NKingimeDb());
             //
-            userRepository = container.Resolve<IUserRepository>();
+            userRepository = IocContainerManage.IocContainer.Resolve<IUserRepository>();
         }
 
         /// <summary>
@@ -65,8 +59,6 @@ namespace NKingime.DataAccess.Tests.IRepository
         {
             int id = 1;
             var user = userRepository.GetById(id);
-
-            var sds = Assembly.GetExecutingAssembly();
             Assert.IsNotNull(user);
         }
 
