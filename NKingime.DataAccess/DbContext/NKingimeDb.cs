@@ -39,8 +39,5 @@ namespace NKingime.DataAccess.DbContext
         {
             modelBuilder.Entity<User>().ToTable("User").HasKey(m => m.Id);
         }
-
-        public virtual DbSet<User> Users { get; set; }
-
     }
 }

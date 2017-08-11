@@ -65,6 +65,8 @@ namespace NKingime.DataAccess.Tests.IRepository
         {
             int id = 1;
             var user = userRepository.GetById(id);
+
+            var sds = Assembly.GetExecutingAssembly();
             Assert.IsNotNull(user);
         }
 
