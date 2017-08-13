@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using NKingime.Core.Mvc;
+using System.Web;
 using System.Web.Mvc;
 
 namespace NKingime.Fight
@@ -8,6 +9,7 @@ namespace NKingime.Fight
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new TicketAuthorizeAttribute());
         }
     }
 }

@@ -11,7 +11,6 @@ namespace NKingime.Entity.Mapping
 {
     using Core.Data;
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// 用户数据实体

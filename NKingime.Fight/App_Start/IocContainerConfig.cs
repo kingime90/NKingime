@@ -1,9 +1,5 @@
 ﻿using Autofac.Integration.Mvc;
 using NKingime.Core.Ioc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NKingime.Fight

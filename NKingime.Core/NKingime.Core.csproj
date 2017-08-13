@@ -75,6 +75,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -120,18 +121,23 @@
     <Compile Include="Data\TransactionManage.cs" />
     <Compile Include="Data\UnitOfWorkContextBase.cs" />
     <Compile Include="Data\UnitOfWorkContextManage.cs" />
+    <Compile Include="Define\GlobalKeys.cs" />
+    <Compile Include="Entity\UserData.cs" />
+    <Compile Include="Extentsion\StringExtentsion.cs" />
     <Compile Include="Ioc\IocContainerManage.cs" />
     <Compile Include="Ioc\IDependency.cs" />
     <Compile Include="Ioc\DependencyModule.cs" />
     <Compile Include="Ioc\ControllerModule.cs" />
+    <Compile Include="Mvc\TicketAuthorizeAttribute.cs" />
+    <Compile Include="Mvc\TicketController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IService.cs" />
     <Compile Include="Service\ServiceBase.cs" />
+    <Compile Include="Util\ArgumentUtil.cs" />
+    <Compile Include="Util\JsonUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Generic\" />
-    <Folder Include="Mvc\" />
-    <Folder Include="Util\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

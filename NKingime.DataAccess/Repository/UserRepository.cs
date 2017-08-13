@@ -1,6 +1,7 @@
 ﻿using NKingime.Core.Data;
 using NKingime.DataAccess.IRepository;
 using NKingime.Entity.Mapping;
+using System.Linq;
 
 namespace NKingime.DataAccess.Repository
 {
@@ -25,6 +26,16 @@ namespace NKingime.DataAccess.Repository
         public UserRepository(IUnitOfWorkContext workContext) : base(workContext)
         {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public User GetByUsername(string username)
+        {
+            return DbEntities.FirstOrDefault(x => x.Username == username);
         }
     }
 }

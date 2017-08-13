@@ -8,6 +8,11 @@ namespace NKingime.DataAccess.IRepository
     /// </summary>
     public interface IUserRepository : IRepository<User>
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        User GetByUsername(string username);
     }
 }
