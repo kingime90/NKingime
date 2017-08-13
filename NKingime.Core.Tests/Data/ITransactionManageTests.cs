@@ -26,7 +26,7 @@ namespace NKingime.Core.Tests.Data
         [SetUp]
         public static void Initialize()
         {
-            IocContainerManage.Register();
+            IocContainerManage.Build();
             //
             UnitOfWorkContextManage.Register(() => new EFUnitOfWorkContext());
             DbContextManage.Register(() => new NKingimeDb());

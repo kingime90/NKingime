@@ -27,12 +27,13 @@ namespace NKingime.Core.Ioc
         }
 
         /// <summary>
-        /// 注册
+        /// 构建
         /// </summary>
-        public static void Register()
+        public static void Build()
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule(new DependencyModule());
+            builder.RegisterModule(new ControllerModule());
             _iocContainer = builder.Build();
         }
     }

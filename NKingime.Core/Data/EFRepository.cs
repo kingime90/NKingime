@@ -10,7 +10,7 @@ namespace NKingime.Core.Data
     /// EF数据仓储
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public class EFRepository<TEntity> : RepositoryBase<TEntity> where TEntity : class, IEntity
+    public abstract class EFRepository<TEntity> : RepositoryBase<TEntity> where TEntity : class, IEntity
     {
 
         private IUnitOfWorkContext _workContext;
@@ -44,3 +44,4 @@ namespace NKingime.Core.Data
         }
     }
 }
+
