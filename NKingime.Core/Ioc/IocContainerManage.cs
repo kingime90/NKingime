@@ -28,7 +28,7 @@ namespace NKingime.Core.Ioc
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule(new DependencyModule());
-            builder.RegisterModule(new ControllerModule());
+            builder.RegisterModule(new MvcControllerModule());
             _iocContainer = builder.Build();
         }
     }

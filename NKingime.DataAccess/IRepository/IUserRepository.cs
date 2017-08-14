@@ -1,5 +1,5 @@
 ﻿using NKingime.Core.Data;
-using NKingime.Entity.Mapping;
+using NKingime.Entity;
 
 namespace NKingime.DataAccess.IRepository
 {

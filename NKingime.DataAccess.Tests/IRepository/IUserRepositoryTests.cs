@@ -3,9 +3,8 @@ using NUnit.Framework;
 using NKingime.Core.Data;
 using NKingime.DataAccess.DbContext;
 using Autofac;
-using System.Reflection;
 using NKingime.DataAccess.IRepository;
-using NKingime.Entity.Mapping;
+using NKingime.Entity;
 using NKingime.Core.Ioc;
 
 namespace NKingime.DataAccess.Tests.IRepository
@@ -40,11 +39,12 @@ namespace NKingime.DataAccess.Tests.IRepository
         {
             var user = new User
             {
-                Username = "dev03",
-                Password = "123456",
-                Nickname = "dev03",
+                Username = "admin",
+                Password = "admin",
+                Nickname = "admin",
                 Gender = 1,
                 Mobile = "13535555555",
+                Enabled = 1,
                 RegisterDate = DateTime.Now
             };
             var result = userRepository.Save(user, true);

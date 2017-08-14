@@ -120,5 +120,12 @@ namespace NKingime.Fight.Controllers
             var user = _userService.GetById(UserData.UserId);
             return View(user);
         }
+
+        [HttpGet]
+        public ActionResult List()
+        {
+            var userList = _userService.List();
+            return View(userList);
+        }
     }
 }

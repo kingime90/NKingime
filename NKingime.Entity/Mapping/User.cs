@@ -7,45 +7,51 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NKingime.Entity.Mapping
+namespace NKingime.Entity
 {
     using Core.Data;
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
-    /// 用户数据实体
+    /// 
     /// </summary>
-    public partial class User: EntityBase<int>
+    public partial class User : EntityBase<int>
     {
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Username { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Password { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Nickname { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public Nullable<byte> Gender { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Mobile { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public Nullable<System.DateTime> RegisterDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Username { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Nickname { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Nullable<byte> Gender { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Mobile { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Nullable<System.DateTime> RegisterDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Enabled { get; set; }
     }
 }

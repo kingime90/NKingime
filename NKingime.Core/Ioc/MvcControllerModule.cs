@@ -8,9 +8,9 @@ using System.Reflection;
 namespace NKingime.Core.Ioc
 {
     /// <summary>
-    /// 
+    /// Nvc控制器注入模块
     /// </summary>
-    public class ControllerModule : Autofac.Module
+    public class MvcControllerModule : Autofac.Module
     {
 
         /// <summary>

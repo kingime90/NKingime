@@ -1,4 +1,4 @@
-﻿using NKingime.Entity.Mapping;
+﻿using NKingime.Entity;
 using System.Data.Entity;
 
 namespace NKingime.DataAccess.DbContext

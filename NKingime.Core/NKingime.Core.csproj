@@ -127,7 +127,7 @@
     <Compile Include="Ioc\IocContainerManage.cs" />
     <Compile Include="Ioc\IDependency.cs" />
     <Compile Include="Ioc\DependencyModule.cs" />
-    <Compile Include="Ioc\ControllerModule.cs" />
+    <Compile Include="Ioc\MvcControllerModule.cs" />
     <Compile Include="Mvc\TicketAuthorizeAttribute.cs" />
     <Compile Include="Mvc\TicketController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

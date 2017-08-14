@@ -1,6 +1,6 @@
 ﻿using NKingime.Core.Data;
 using NKingime.DataAccess.IRepository;
-using NKingime.Entity.Mapping;
+using NKingime.Entity;
 using System.Linq;
 
 namespace NKingime.DataAccess.Repository

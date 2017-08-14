@@ -1,6 +1,8 @@
 ﻿using NKingime.Core.Ioc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace NKingime.Core.Data
 {
@@ -85,6 +87,19 @@ namespace NKingime.Core.Data
         /// <param name="key">主键值</param>
         /// <returns></returns>
         TEntity GetById<TKey>(TKey key);
+
+        /// <summary>
+        /// 列表（全部）
+        /// </summary>
+        /// <returns></returns>
+        List<TEntity> List();
+
+        /// <summary>
+        /// 基于谓词筛选列表
+        /// </summary>
+        /// <param name="predicate">用于测试每个元素是否满足条件的函数</param>
+        /// <returns></returns>
+        List<TEntity> List(Expression<Func<TEntity, bool>> predicate);
     }
 
     /// <summary>

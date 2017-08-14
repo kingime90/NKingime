@@ -52,5 +52,10 @@ namespace NKingime.Model
     	/// 
     	/// </summary>
     	public Nullable<System.DateTime> RegisterDate { get; set; }
+        
+    	/// <summary>
+    	/// 
+    	/// </summary>
+    	public int Enabled { get; set; }
     }
 }

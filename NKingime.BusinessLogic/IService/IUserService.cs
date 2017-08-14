@@ -1,5 +1,5 @@
 ﻿using NKingime.Core.Service;
-using NKingime.Entity.Mapping;
+using NKingime.Entity;
 
 namespace NKingime.BusinessLogic.IService
 {

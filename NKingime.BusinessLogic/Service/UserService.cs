@@ -1,8 +1,7 @@
 ﻿using NKingime.BusinessLogic.IService;
 using NKingime.Core.Service;
 using NKingime.DataAccess.IRepository;
-using NKingime.Entity.Mapping;
-using System.Linq;
+using NKingime.Entity;
 
 namespace NKingime.BusinessLogic.Service
 {
