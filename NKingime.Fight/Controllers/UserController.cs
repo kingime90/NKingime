@@ -124,7 +124,7 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            var userList = UserService.List();
+            var userList = UserService.AllList();
             return View(userList);
         }
     }

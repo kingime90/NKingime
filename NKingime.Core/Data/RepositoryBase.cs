@@ -147,20 +147,20 @@ namespace NKingime.Core.Data
         }
 
         /// <summary>
-        /// 列表（全部）
+        /// 全部列表
         /// </summary>
         /// <returns></returns>
-        public List<TEntity> List()
+        public List<TEntity> AllList()
         {
             return DbEntities.ToList();
         }
 
         /// <summary>
-        /// 基于谓词筛选列表
+        /// 查询列表
         /// </summary>
-        /// <param name="predicate">用于测试每个元素是否满足条件的函数</param>
+        /// <param name="predicate">筛选条件</param>
         /// <returns></returns>
-        public List<TEntity> List(Expression<Func<TEntity, bool>> predicate)
+        public List<TEntity> QueryList(Expression<Func<TEntity, bool>> predicate)
         {
             return DbEntities.Where(predicate).ToList();
         }
