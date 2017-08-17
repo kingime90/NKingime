@@ -8,7 +8,7 @@ namespace NKingime.Fight.ViewModels
         [Required]
         [StringLength(50)]
         [DataType(DataType.Text)]
-        [Display(Name = "用户名")]
+        [Display(Name = "用户名", Description= "用户名")]
         public string Username { get; set; }
 
         [Required]
