@@ -17,7 +17,7 @@ namespace NKingime.Fight.Controllers
     public class UserController : TicketController
     {
 
-        private readonly IUserService _userService;
+        private readonly IUserService UserService;
 
         /// <summary>
         /// 
@@ -33,7 +33,7 @@ namespace NKingime.Fight.Controllers
         /// <param name="userService"></param>
         public UserController(IUserService userService)
         {
-            _userService = userService;
+            UserService = userService;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public ActionResult GetById(int? userId)
         {
-            var user = _userService.GetById(userId);
+            var user = UserService.GetById(userId);
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
@@ -73,7 +73,7 @@ namespace NKingime.Fight.Controllers
                 return View(model);
             }
             //
-            var user = _userService.GetByUsername(model.Username);
+            var user = UserService.GetByUsername(model.Username);
             if (user == null || model.Password != user.Password)
             {
                 ModelState.AddModelError("Password", "用户名不存在或密码错误！");
@@ -117,14 +117,14 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var user = _userService.GetById(UserData.UserId);
+            var user = UserService.GetById(UserData.UserId);
             return View(user);
         }
 
         [HttpGet]
         public ActionResult List()
         {
-            var userList = _userService.List();
+            var userList = UserService.List();
             return View(userList);
         }
     }

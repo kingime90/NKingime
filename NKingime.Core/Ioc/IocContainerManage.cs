@@ -8,16 +8,16 @@ namespace NKingime.Core.Ioc
     public class IocContainerManage
     {
 
-        private static IContainer _iocContainer;
+        private static IContainer _container;
 
         /// <summary>
         /// IoC容器
         /// </summary>
-        public static IContainer IocContainer
+        public static IContainer Container
         {
             get
             {
-                return _iocContainer;
+                return _container;
             }
         }
 
@@ -29,7 +29,7 @@ namespace NKingime.Core.Ioc
             var builder = new ContainerBuilder();
             builder.RegisterModule(new DependencyModule());
             builder.RegisterModule(new MvcControllerModule());
-            _iocContainer = builder.Build();
+            _container = builder.Build();
         }
     }
 }

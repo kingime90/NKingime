@@ -16,7 +16,7 @@ namespace NKingime.Fight
         public static void Register()
         {
             IocContainerManage.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(IocContainerManage.IocContainer));
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(IocContainerManage.Container));
         }
     }
 }

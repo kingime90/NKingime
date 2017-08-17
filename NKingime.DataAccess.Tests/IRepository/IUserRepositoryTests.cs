@@ -28,7 +28,7 @@ namespace NKingime.DataAccess.Tests.IRepository
             UnitOfWorkContextManage.Register(() => new EFUnitOfWorkContext());
             DbContextManage.Register(() => new NKingimeDb());
             //
-            userRepository = IocContainerManage.IocContainer.Resolve<IUserRepository>();
+            userRepository = IocContainerManage.Container.Resolve<IUserRepository>();
         }
 
         /// <summary>

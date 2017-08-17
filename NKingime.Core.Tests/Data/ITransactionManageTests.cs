@@ -31,7 +31,7 @@ namespace NKingime.Core.Tests.Data
             UnitOfWorkContextManage.Register(() => new EFUnitOfWorkContext());
             DbContextManage.Register(() => new NKingimeDb());
             //
-            transactionManage = IocContainerManage.IocContainer.Resolve<ITransactionManage>();
+            transactionManage = IocContainerManage.Container.Resolve<ITransactionManage>();
         }
 
         /// <summary>

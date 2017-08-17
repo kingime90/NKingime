@@ -24,7 +24,7 @@ namespace NKingime.Core.Ioc
         /// <param name="builder"></param>
         protected override void Load(ContainerBuilder builder)
         {
-            //var assemblyTypes = ConfigurationManager.AppSettings[AssemblyTypesKey];
+            //var assemblyTypes = ConfigurationManager.AppSettings["DependencyModule.Types"];
             var assemblies = BuildManager.GetReferencedAssemblies().Cast<Assembly>().Where(p => p.FullName.StartsWith(DependencyAssemblyPrefixKey)).ToArray();
             var dependencyType = typeof(IDependency);
             //var assemblies = assemblyTypes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(p => Assembly.Load(p)).ToArray();

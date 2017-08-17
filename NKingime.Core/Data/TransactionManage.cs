@@ -37,7 +37,7 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public T Create<T>() where T : IRepository
         {
-            return IocContainerManage.IocContainer.Resolve<T>(new TypedParameter(typeof(IUnitOfWorkContext), _workContext));
+            return IocContainerManage.Container.Resolve<T>(new TypedParameter(typeof(IUnitOfWorkContext), _workContext));
         }
     }
 }
