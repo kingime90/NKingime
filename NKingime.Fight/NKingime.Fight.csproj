@@ -239,18 +239,11 @@
     <Compile Include="ViewModels\UserViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\signin.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\ai.0.22.9-build00167.js" />
-    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="static\css\signin.css" />
+    <Content Include="static\js\ai.0.22.9-build00167.js" />
+    <Content Include="static\js\ai.0.22.9-build00167.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -260,24 +253,26 @@
     <Content Include="Config\ConnectionString.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\npm.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <None Include="static\js\jquery-1.10.2.intellisense.js" />
+    <Content Include="static\js\jquery-1.10.2.js" />
+    <Content Include="static\js\jquery-1.10.2.min.js" />
+    <None Include="static\js\jquery.validate-vsdoc.js" />
+    <Content Include="static\js\jquery.validate.js" />
+    <Content Include="static\js\jquery.validate.min.js" />
+    <Content Include="static\js\jquery.validate.unobtrusive.js" />
+    <Content Include="static\js\jquery.validate.unobtrusive.min.js" />
+    <Content Include="static\js\modernizr-2.6.2.js" />
+    <Content Include="static\js\respond.js" />
+    <Content Include="static\js\respond.min.js" />
+    <Content Include="static\js\_references.js" />
+    <Content Include="static\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="static\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="static\bootstrap\css\bootstrap.css" />
+    <Content Include="static\bootstrap\css\bootstrap.min.css" />
+    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="static\bootstrap\js\bootstrap.js" />
+    <Content Include="static\bootstrap\js\bootstrap.min.js" />
+    <Content Include="static\bootstrap\js\npm.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -291,18 +286,23 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\List.cshtml" />
+    <Content Include="static\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="static\bootstrap\css\bootstrap-theme.min.css.map" />
+    <Content Include="static\bootstrap\css\bootstrap.css.map" />
+    <Content Include="static\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="static\js\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NKingime.BusinessLogic\NKingime.BusinessLogic.csproj">
