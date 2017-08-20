@@ -22,14 +22,6 @@ namespace NKingime.Fight.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public UserController()
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="userService"></param>
         public UserController(IUserService userService)
         {

@@ -31,7 +31,7 @@ namespace NKingime.Core.Mvc
         /// <summary>
         /// 
         /// </summary>
-        protected TicketController() : base()
+        public TicketController() : base()
         {
 
         }

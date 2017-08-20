@@ -10,6 +10,6 @@ namespace NKingime.Core.Define
         /// <summary>
         /// 票证用户数据键
         /// </summary>
-        public const string TicketUserDataKey = "Ticket-UserData-Key";
+        public const string TicketUserDataKey = "Ticket-User-Data-Key";
     }
 }
