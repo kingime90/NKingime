@@ -1,4 +1,5 @@
-﻿using NKingime.Core.Mvc;
+﻿using NKingime.BusinessLogic.IService;
+using NKingime.Core.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,13 @@ namespace NKingime.Fight.Controllers
     public class ManageController : TicketController
     {
 
+        private readonly IUserService userService;
+
+        public ManageController(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -20,7 +28,8 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var user = userService.GetById(UserData.UserId);
+            return View(user);
         }
     }
 }

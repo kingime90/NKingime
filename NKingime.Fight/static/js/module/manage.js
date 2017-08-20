@@ -1,19 +1,19 @@
 ﻿$(function () {
-    pageInitModule.setWidth();
-    pageInitModule.setSidebar();
-    pageInitModule.setCarousel();
+    _$manage.setWidth();
+    _$manage.setSidebar();
+    _$manage.setCarousel();
 })
 $(window).resize(function () {
-    pageInitModule.setWidth();
+    _$manage.setWidth();
 })
 $(window).scroll(function () {
-    pageInitModule.setScrollToTop();
+    _$manage.setScrollToTop();
 });
 
 /*
 * init page when page load
 */
-var pageInitModule = (function (mod) {
+var _$manage = (function (mod) {
     mod.setCarousel = function () {
         try {
             $('.carousel').hammer().on('swipeleft', function () {
@@ -77,6 +77,33 @@ var pageInitModule = (function (mod) {
                 }
             }
         })
-    }
+    };
+    /*
+    *用户登出
+    */
+    mod.logout = function () {
+        $.confirm({
+            title: '温馨提示!',
+            content: '确定要注销当前登录用户吗?',
+            buttons: {
+                confirm: {
+                    text: '确定',
+                    action: function () {
+                        _$ajax.post({
+                            url: '/User/Logout', success: function (data, textStatus) {
+                                if (data.success === true) {
+                                    //跳转并且不能后退
+                                    window.location.replace('/User/Login');
+                                }
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '取消'
+                }
+            }
+        });
+    };
     return mod;
-})(window.pageInitModule || {});
+})(window._$manage || {});

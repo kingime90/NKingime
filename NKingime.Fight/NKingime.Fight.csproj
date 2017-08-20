@@ -249,15 +249,15 @@
     <Content Include="static\css\bootstrap.colorpicker\img\bootstrap-colorpicker\hue.png" />
     <Content Include="static\css\bootstrap.colorpicker\img\bootstrap-colorpicker\saturation.png" />
     <Content Include="static\css\bootstrap.datepicker\bootstrap-datepicker3.min.css" />
-    <Content Include="static\css\bootstrap.DateRangePicker\daterangepicker.css" />
+    <Content Include="static\css\bootstrap.daterangepicker\daterangepicker.css" />
     <Content Include="static\css\bootstrap.datetimepicker\bootstrap-datetimepicker.min.css" />
     <Content Include="static\css\bootstrap.formhelper\css\bootstrap-formhelpers.min.css" />
     <Content Include="static\css\bootstrap.formhelper\img\bootstrap-formhelpers-countries.flags-LICENSE.txt" />
     <Content Include="static\css\bootstrap.formhelper\img\bootstrap-formhelpers-countries.flags.png" />
     <Content Include="static\css\bootstrap.formhelper\img\bootstrap-formhelpers-currencies.flags.png" />
     <Content Include="static\css\bootstrap.formhelper\img\bootstrap-formhelpers-googlefonts.png" />
-    <Content Include="static\css\bootstrap.metisMenu\demo.css" />
-    <Content Include="static\css\bootstrap.metisMenu\metisMenu.min.css" />
+    <Content Include="static\css\bootstrap.metismenu\demo.css" />
+    <Content Include="static\css\bootstrap.metismenu\metisMenu.min.css" />
     <Content Include="static\css\bootstrap.sweetalert\sweet-alert.css" />
     <Content Include="static\css\bootstrap.switch\bootstrap-switch.min.css" />
     <Content Include="static\css\bootstrap.tabdrop\tabdrop.css" />
@@ -265,7 +265,7 @@
     <Content Include="static\css\bootstrap\bootstrap-theme.min.css" />
     <Content Include="static\css\bootstrap\bootstrap.css" />
     <Content Include="static\css\bootstrap\bootstrap.min.css" />
-    <Content Include="static\css\default.css" />
+    <Content Include="static\css\manage.css" />
     <Content Include="static\css\font-awesome.css" />
     <Content Include="static\css\font-awesome.min.css" />
     <Content Include="static\css\hover\hover-min.css" />
@@ -371,12 +371,12 @@
     <Content Include="static\js\bootstrap.datepicker\locales\bootstrap-datepicker.vi.min.js" />
     <Content Include="static\js\bootstrap.datepicker\locales\bootstrap-datepicker.zh-CN.min.js" />
     <Content Include="static\js\bootstrap.datepicker\locales\bootstrap-datepicker.zh-TW.min.js" />
-    <Content Include="static\js\bootstrap.DateRangePicker\daterangepicker.js" />
-    <Content Include="static\js\bootstrap.DateRangePicker\moment-with-locales.min.js" />
+    <Content Include="static\js\bootstrap.daterangepicker\daterangepicker.js" />
+    <Content Include="static\js\bootstrap.daterangepicker\moment-with-locales.min.js" />
     <Content Include="static\js\bootstrap.datetimepicker\bootstrap-datetimepicker.min.js" />
     <Content Include="static\js\bootstrap.datetimepicker\moment-with-locales.min.js" />
     <Content Include="static\js\bootstrap.formhelper\bootstrap-formhelpers.min.js" />
-    <Content Include="static\js\bootstrap.metisMenu\metisMenu.min.js" />
+    <Content Include="static\js\bootstrap.metismenu\metisMenu.min.js" />
     <Content Include="static\js\bootstrap.sweetalert\sweet-alert.min.js" />
     <Content Include="static\js\bootstrap.switch\bootstrap-switch.min.js" />
     <Content Include="static\js\bootstrap.tabdrop\bootstrap-tabdrop.js" />
@@ -385,7 +385,8 @@
     <Content Include="static\js\bootstrap\html5shiv.min.js" />
     <Content Include="static\js\bootstrap\npm.js" />
     <Content Include="static\js\bootstrap\respond.min.js" />
-    <Content Include="static\js\default.js" />
+    <Content Include="static\js\jquery.ajax.js" />
+    <Content Include="static\js\manage.js" />
     <Content Include="static\js\jquery-1.10.2.js" />
     <Content Include="static\js\jquery-1.10.2.min.js" />
     <None Include="static\js\jquery.validate-vsdoc.js" />
@@ -399,7 +400,6 @@
     <Content Include="static\js\jquery.lazyload\jquery.lazyload.min.js" />
     <Content Include="static\js\jquery.masonry\imagesloaded.pkgd.min.js" />
     <Content Include="static\js\jquery.masonry\masonry.pkgd.min.js" />
-    <Content Include="static\js\jquery.min.js" />
     <Content Include="static\js\jquery.mmenu\jquery.mmenu.min.js" />
     <Content Include="static\js\jquery.owl.carousel.2\owl.carousel.min.js" />
     <Content Include="static\js\jquery.owl.carousel\owl.carousel.min.js" />
@@ -416,17 +416,8 @@
     <Content Include="static\js\modernizr-2.6.2.js" />
     <Content Include="static\js\pace\pace.min.js" />
     <Content Include="static\js\respond.js" />
-    <Content Include="static\js\respond.min.js" />
     <Content Include="static\js\wow\wow.min.js" />
     <Content Include="static\js\_references.js" />
-    <Content Include="static\bootstrap\css\bootstrap-theme.css" />
-    <Content Include="static\bootstrap\css\bootstrap-theme.min.css" />
-    <Content Include="static\bootstrap\css\bootstrap.css" />
-    <Content Include="static\bootstrap\css\bootstrap.min.css" />
-    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="static\bootstrap\js\bootstrap.js" />
-    <Content Include="static\bootstrap\js\bootstrap.min.js" />
-    <Content Include="static\bootstrap\js\npm.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -440,14 +431,6 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\List.cshtml" />
-    <Content Include="static\bootstrap\css\bootstrap-theme.css.map" />
-    <Content Include="static\bootstrap\css\bootstrap-theme.min.css.map" />
-    <Content Include="static\bootstrap\css\bootstrap.css.map" />
-    <Content Include="static\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="static\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\Manage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

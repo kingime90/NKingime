@@ -5,6 +5,7 @@ using NKingime.Core.Mvc;
 using NKingime.Core.Util;
 using NKingime.Fight.ViewModels;
 using System;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -17,7 +18,7 @@ namespace NKingime.Fight.Controllers
     public class UserController : TicketController
     {
 
-        private readonly IUserService UserService;
+        private readonly IUserService userService;
 
         /// <summary>
         /// 
@@ -25,7 +26,7 @@ namespace NKingime.Fight.Controllers
         /// <param name="userService"></param>
         public UserController(IUserService userService)
         {
-            UserService = userService;
+            this.userService = userService;
         }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public ActionResult GetById(int? userId)
         {
-            var user = UserService.GetById(userId);
+            var user = userService.GetById(userId);
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
@@ -65,7 +66,7 @@ namespace NKingime.Fight.Controllers
                 return View(model);
             }
             //
-            var user = UserService.GetByUsername(model.Username);
+            var user = userService.GetByUsername(model.Username);
             if (user == null || model.Password != user.Password)
             {
                 ModelState.AddModelError("Password", "用户名不存在或密码错误！");
@@ -94,12 +95,7 @@ namespace NKingime.Fight.Controllers
             }
             //
             Response.Cookies.Add(authCookie);
-            if (!string.IsNullOrWhiteSpace(returnUrl))
-            {
-                return new RedirectResult(HttpUtility.UrlDecode(returnUrl));
-            }
-            //
-            return RedirectToAction("Index");
+            return Redirect(!string.IsNullOrWhiteSpace(returnUrl) ? returnUrl : FormsAuthentication.DefaultUrl);
         }
 
         /// <summary>
@@ -109,15 +105,26 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var user = UserService.GetById(UserData.UserId);
+            var user = userService.GetById(UserData.UserId);
             return View(user);
         }
 
         [HttpGet]
         public ActionResult List()
         {
-            var userList = UserService.AllList();
+            var userList = userService.AllList();
             return View(userList);
+        }
+
+        /// <summary>
+        /// 登出
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return Json(new { success = true });
         }
     }
 }
