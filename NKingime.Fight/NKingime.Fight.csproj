@@ -265,7 +265,6 @@
     <Content Include="static\css\bootstrap\bootstrap-theme.min.css" />
     <Content Include="static\css\bootstrap\bootstrap.css" />
     <Content Include="static\css\bootstrap\bootstrap.min.css" />
-    <Content Include="static\css\manage.css" />
     <Content Include="static\css\font-awesome.css" />
     <Content Include="static\css\font-awesome.min.css" />
     <Content Include="static\css\hover\hover-min.css" />
@@ -279,10 +278,16 @@
     <Content Include="static\css\jquery.owl.carousel\owl.carousel.css" />
     <Content Include="static\css\jquery.superslides\superslides.css" />
     <Content Include="static\css\jquery.toastr\toastr.min.css" />
+    <Content Include="static\css\ladda\ladda.css" />
+    <Content Include="static\css\loading\loading.css" />
+    <Content Include="static\css\module\manage.css" />
     <Content Include="static\css\pace\dataurl.css" />
-    <Content Include="static\css\signin.css" />
+    <Content Include="static\css\module\login.css" />
     <Content Include="static\css\wow\animate.css" />
     <Content Include="static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="static\css\loading\img\gb_tip_layer.png" />
+    <Content Include="static\css\loading\img\gb_tip_layer_ie6.png" />
+    <Content Include="static\css\loading\img\loading.gif" />
     <Content Include="static\js\ai.0.22.9-build00167.js" />
     <Content Include="static\js\ai.0.22.9-build00167.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -386,7 +391,6 @@
     <Content Include="static\js\bootstrap\npm.js" />
     <Content Include="static\js\bootstrap\respond.min.js" />
     <Content Include="static\js\jquery.ajax.js" />
-    <Content Include="static\js\manage.js" />
     <Content Include="static\js\jquery-1.10.2.js" />
     <Content Include="static\js\jquery-1.10.2.min.js" />
     <None Include="static\js\jquery.validate-vsdoc.js" />
@@ -413,9 +417,13 @@
     <Content Include="static\js\jquery.validate.unobtrusive.js" />
     <Content Include="static\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="static\js\jquery.vide\jquery.vide.js" />
+    <Content Include="static\js\ladda\jquery.jribbble.min.js" />
+    <Content Include="static\js\ladda\ladda.js" />
+    <Content Include="static\js\ladda\spin.js" />
+    <Content Include="static\js\loading\loading.js" />
     <Content Include="static\js\modernizr-2.6.2.js" />
+    <Content Include="static\js\module\manage.js" />
     <Content Include="static\js\pace\pace.min.js" />
-    <Content Include="static\js\respond.js" />
     <Content Include="static\js\wow\wow.min.js" />
     <Content Include="static\js\_references.js" />
     <Content Include="Web.config" />
@@ -436,6 +444,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="static\image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
