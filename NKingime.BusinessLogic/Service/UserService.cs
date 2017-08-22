@@ -6,7 +6,7 @@ using NKingime.Entity;
 namespace NKingime.BusinessLogic.Service
 {
     /// <summary>
-    /// 
+    /// 用户服务接口
     /// </summary>
     public class UserService : ServiceBase<User>, IUserService
     {
@@ -18,8 +18,7 @@ namespace NKingime.BusinessLogic.Service
         /// </summary>
         public UserService(IUserRepository userRepository)
         {
-            EntityRepository = userRepository;
-            _userRepository = userRepository;
+            EntityRepository = _userRepository = userRepository;
         }
 
         /// <summary>

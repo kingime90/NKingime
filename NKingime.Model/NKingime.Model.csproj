@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Module.cs">
+      <DependentUpon>NKingimeDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="NKingimeDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -67,6 +70,9 @@
       <DependentUpon>NKingimeDb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>NKingimeDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>NKingimeDb.tt</DependentUpon>
     </Compile>

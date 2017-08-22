@@ -8,6 +8,7 @@ namespace NKingime.Fight
     /// </summary>
     public class DataAccessConfig
     {
+
         /// <summary>
         /// 注册数据访问配置
         /// </summary>

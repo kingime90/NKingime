@@ -17,7 +17,10 @@ namespace NKingime.Fight.Controllers
     public class UserController : TicketController
     {
 
-        private readonly IUserService userService;
+        /// <summary>
+        /// 用户服务接口
+        /// </summary>
+        private readonly IUserService _userService;
 
         /// <summary>
         /// 
@@ -25,7 +28,7 @@ namespace NKingime.Fight.Controllers
         /// <param name="userService"></param>
         public UserController(IUserService userService)
         {
-            this.userService = userService;
+            _userService = userService;
         }
 
         /// <summary>
@@ -36,12 +39,12 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public ActionResult GetById(int? userId)
         {
-            var user = userService.GetById(userId);
+            var user = _userService.GetById(userId);
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
-        /// 
+        /// 登录
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -53,7 +56,7 @@ namespace NKingime.Fight.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Do登录
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -65,7 +68,7 @@ namespace NKingime.Fight.Controllers
                 return View(model);
             }
             //
-            var user = userService.GetByUsername(model.Username);
+            var user = _userService.GetByUsername(model.Username);
             if (user == null || model.Password != user.Password)
             {
                 ModelState.AddModelError("Password", "用户名不存在或密码错误！");
@@ -104,14 +107,14 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var user = userService.GetById(UserData.UserId);
+            var user = _userService.GetById(UserData.UserId);
             return View(user);
         }
 
         [HttpGet]
         public ActionResult List()
         {
-            var userList = userService.AllList();
+            var userList = _userService.AllList();
             return View(userList);
         }
 

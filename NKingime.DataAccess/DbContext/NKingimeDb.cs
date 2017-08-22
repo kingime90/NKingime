@@ -34,6 +34,8 @@ namespace NKingime.DataAccess.DbContext
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User").HasKey(m => m.Id);
+            modelBuilder.Entity<Module>().ToTable("Module").HasKey(m => m.Id);
+            modelBuilder.Entity<Role>().ToTable("Role").HasKey(m => m.Id);
         }
     }
 }

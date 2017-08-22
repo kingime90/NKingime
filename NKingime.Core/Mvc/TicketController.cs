@@ -5,7 +5,7 @@ using System.Web.Mvc;
 namespace NKingime.Core.Mvc
 {
     /// <summary>
-    /// 
+    /// 令牌控制器基类
     /// </summary>
     public abstract class TicketController : Controller
     {

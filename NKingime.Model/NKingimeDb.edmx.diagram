@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="bb9cf98aeb80425db95c2f0d3993703d" Name="Diagram1">
         <EntityTypeShape EntityType="NKingime.Model.User" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NKingime.Model.Role" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NKingime.Model.Module" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
