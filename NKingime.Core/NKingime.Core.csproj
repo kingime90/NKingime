@@ -123,6 +123,8 @@
     <Compile Include="Data\UnitOfWorkContextManage.cs" />
     <Compile Include="Define\GlobalKeys.cs" />
     <Compile Include="Entity\UserData.cs" />
+    <Compile Include="Extentsion\BooleanExtentsion.cs" />
+    <Compile Include="Extentsion\GenericExtentsion.cs" />
     <Compile Include="Extentsion\StringExtentsion.cs" />
     <Compile Include="Ioc\IocContainerManage.cs" />
     <Compile Include="Ioc\IDependency.cs" />

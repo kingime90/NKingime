@@ -30,6 +30,28 @@ namespace NKingime.Core.Extentsion
         }
 
         /// <summary>
+        /// 如果指定的字符串不是 null、System.String.Empty 字符串，返回此字符串，反之返回设置的默认值
+        /// </summary>
+        /// <param name="value">字符串值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static string IfNullOrEmpty(this string value, string defaultValue = "")
+        {
+            return !string.IsNullOrEmpty(value) ? value : defaultValue;
+        }
+
+        /// <summary>
+        /// 如果指定的字符串不是 null、空、空白字符，返回此字符串，反之返回设置的默认值
+        /// </summary>
+        /// <param name="value">字符串值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static string IfNullOrWhiteSpace(this string value, string defaultValue = "")
+        {
+            return !string.IsNullOrWhiteSpace(value) ? value : defaultValue;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>

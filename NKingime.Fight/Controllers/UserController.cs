@@ -72,7 +72,7 @@ namespace NKingime.Fight.Controllers
             if (user == null || model.Password != user.Password)
             {
                 ModelState.AddModelError("Password", "用户名不存在或密码错误！");
-                return View();
+                return View(model);
             }
             //
             var now = DateTime.Now;
