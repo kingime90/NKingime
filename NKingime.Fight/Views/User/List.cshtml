@@ -1,16 +1,18 @@
 ﻿@model IEnumerable<NKingime.Entity.User>
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "用户列表";
 }
-<table>
+<table data-toggle="table" data-striped="true" data-pagination="true"
+       data-page-number="1" data-page-size="10" data-page-list="[10, 25, 50, 100]"
+       data-search="true" data-show-refresh="true" data-show-toggle="true" data-show-pagination-switch="true" data-detail-view="true">
     <thead>
         <tr>
             <th>用户名</th>
             <th>昵称</th>
-            <th>性别</th>
+            <th data-align="center">性别</th>
             <th>手机号</th>
             <th>注册日期</th>
-            <th>是否启用</th>
+            <th data-align="center">是否启用</th>
         </tr>
     </thead>
     <tbody>
@@ -22,8 +24,15 @@
                 <td>@user.Gender</td>
                 <td>@user.Mobile</td>
                 <td>@user.RegisterDate</td>
-                <td>@user.Enabled</td>
+                <td data-formatter="enabledFormatter">@user.Enabled</td>
             </tr>
         }
     </tbody>
 </table>
+@section scripts{
+    <script type="text/javascript">
+        function enabledFormatter(value, row, index) {
+            alert(value);
+        }
+    </script>
+}

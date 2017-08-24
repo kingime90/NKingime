@@ -261,6 +261,7 @@
     <Content Include="static\css\bootstrap.sweetalert\sweet-alert.css" />
     <Content Include="static\css\bootstrap.switch\bootstrap-switch.min.css" />
     <Content Include="static\css\bootstrap.tabdrop\tabdrop.css" />
+    <Content Include="static\css\bootstrap.table\bootstrap-table.css" />
     <Content Include="static\css\bootstrap\bootstrap-theme.css" />
     <Content Include="static\css\bootstrap\bootstrap-theme.min.css" />
     <Content Include="static\css\bootstrap\bootstrap.css" />
@@ -281,6 +282,7 @@
     <Content Include="static\css\jquery.toastr\toastr.min.css" />
     <Content Include="static\css\ladda\ladda.css" />
     <Content Include="static\css\loading\loading.css" />
+    <Content Include="static\css\layout.css" />
     <Content Include="static\css\module\manage.css" />
     <Content Include="static\css\pace\dataurl.css" />
     <Content Include="static\css\module\login.css" />
@@ -390,6 +392,8 @@
     <Content Include="static\js\bootstrap.sweetalert\sweet-alert.min.js" />
     <Content Include="static\js\bootstrap.switch\bootstrap-switch.min.js" />
     <Content Include="static\js\bootstrap.tabdrop\bootstrap-tabdrop.js" />
+    <Content Include="static\js\bootstrap.table\bootstrap-table-zh-CN.js" />
+    <Content Include="static\js\bootstrap.table\bootstrap-table.js" />
     <Content Include="static\js\bootstrap\bootstrap.js" />
     <Content Include="static\js\bootstrap\bootstrap.min.js" />
     <Content Include="static\js\bootstrap\html5shiv.min.js" />
@@ -446,6 +450,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\List.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

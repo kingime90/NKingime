@@ -30,7 +30,7 @@ namespace NKingime.Fight.Controllers
         }
 
         /// <summary>
-        /// 首页
+        /// 主页
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -39,6 +39,16 @@ namespace NKingime.Fight.Controllers
             var user = _userService.GetById(UserData.UserId);
             ViewBag.ModuleList = _moduleService.GetListByUserId(UserData.UserId);
             return View(user);
+        }
+
+        /// <summary>
+        /// 首页
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Home()
+        {
+            return View();
         }
     }
 }
