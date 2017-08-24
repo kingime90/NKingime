@@ -1,12 +1,14 @@
-﻿var _$ajax = (function (mod) {
+﻿window.apply = window.apply || {};
+/*
+* ajax
+*/
+apply.ajax = (function (mod) {
     mod.get = function (options) {
-        debugger;
         var settings = $.extend(true, {}, mod.defaults, options);
         settings.type = 'GET';
         $.ajax(settings);
     };
     mod.post = function (options) {
-        debugger;
         var settings = $.extend(true, {}, mod.defaults, options);
         settings.type = 'POST';
         $.ajax(settings);
@@ -32,4 +34,4 @@
         }
     };
     return mod;
-})(window._$ajax || {});
+})(apply.ajax = apply.ajax || {});

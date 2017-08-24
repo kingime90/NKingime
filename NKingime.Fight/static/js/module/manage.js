@@ -1,19 +1,20 @@
 ﻿$(function () {
-    _$manage.setWidth();
-    _$manage.setSidebar();
-    _$manage.setCarousel();
+    module.manage.setWidth();
+    module.manage.setSidebar();
+    module.manage.setCarousel();
 })
 $(window).resize(function () {
-    _$manage.setWidth();
+    module.manage.setWidth();
 })
 $(window).scroll(function () {
-    _$manage.setScrollToTop();
+    module.manage.setScrollToTop();
 });
 
 /*
-* init page when page load
+* 后台管理首页
 */
-var _$manage = (function (mod) {
+window.module = window.module || {};
+module.manage = (function (mod) {
     mod.setCarousel = function () {
         try {
             $('.carousel').hammer().on('swipeleft', function () {
@@ -89,7 +90,7 @@ var _$manage = (function (mod) {
                 confirm: {
                     text: '确定',
                     action: function () {
-                        _$ajax.post({
+                        apply.ajax.post({
                             url: '/User/Logout', success: function (data, textStatus) {
                                 if (data.success === true) {
                                     //跳转并且不能后退
@@ -106,4 +107,4 @@ var _$manage = (function (mod) {
         });
     };
     return mod;
-})(window._$manage || {});
+})(module.manage = module.manage || {});

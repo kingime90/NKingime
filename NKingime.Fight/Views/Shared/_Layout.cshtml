@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/css/bootstrap")
+    <link href="/static/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -34,8 +35,8 @@
             <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
         </footer>
     </div>
-    @Scripts.Render("~/js/jquery")
-    @Scripts.Render("~/js/bootstrap")
+    <script src="/static/js/jquery-1.10.2.min.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

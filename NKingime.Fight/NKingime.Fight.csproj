@@ -267,6 +267,7 @@
     <Content Include="static\css\bootstrap\bootstrap.min.css" />
     <Content Include="static\css\font-awesome.css" />
     <Content Include="static\css\font-awesome.min.css" />
+    <Content Include="static\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="static\css\hover\hover-min.css" />
     <Content Include="static\css\jquery.animo\animate-animo.min.css" />
     <Content Include="static\css\jquery.fotorama\fotorama.css" />
@@ -307,6 +308,10 @@
     <Content Include="static\css\bootstrap\bootstrap-theme.min.css.map" />
     <Content Include="static\css\bootstrap\bootstrap.css.map" />
     <Content Include="static\css\bootstrap\bootstrap.min.css.map" />
+    <Content Include="static\css\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="static\css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="static\css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="static\css\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="static\js\jquery-1.10.2.intellisense.js" />
     <Content Include="static\js\bootstrap.colorpicker\bootstrap-colorpicker.min.js" />
     <Content Include="static\js\bootstrap.datepicker\js\bootstrap-datepicker.min.js" />
@@ -390,7 +395,8 @@
     <Content Include="static\js\bootstrap\html5shiv.min.js" />
     <Content Include="static\js\bootstrap\npm.js" />
     <Content Include="static\js\bootstrap\respond.min.js" />
-    <Content Include="static\js\jquery.ajax.js" />
+    <Content Include="static\js\apply\ajax.js" />
+    <Content Include="static\js\component\tabs.js" />
     <Content Include="static\js\jquery-1.10.2.js" />
     <Content Include="static\js\jquery-1.10.2.min.js" />
     <None Include="static\js\jquery.validate-vsdoc.js" />
