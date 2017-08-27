@@ -1,6 +1,7 @@
 ﻿using NKingime.Core.Data;
 using NKingime.DataAccess.IRepository;
 using NKingime.Entity;
+using System;
 using System.Linq;
 
 namespace NKingime.DataAccess.Repository
@@ -10,6 +11,17 @@ namespace NKingime.DataAccess.Repository
     /// </summary>
     public class UserRepository : EFRepository<User>, IUserRepository
     {
+
+        /// <summary>
+        /// 默认分页排序
+        /// </summary>
+        public override Func<IQueryable<User>, IQueryable<User>> PagingOrder
+        {
+            get
+            {
+                return q => q.OrderBy(p => p.Id);
+            }
+        }
 
         /// <summary>
         /// 

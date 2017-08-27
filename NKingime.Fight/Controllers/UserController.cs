@@ -3,8 +3,10 @@ using NKingime.Core.Entity;
 using NKingime.Core.Extentsion;
 using NKingime.Core.Mvc;
 using NKingime.Core.Util;
+using NKingime.Entity;
 using NKingime.Fight.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -112,10 +114,25 @@ namespace NKingime.Fight.Controllers
         }
 
         [HttpGet]
-        public ActionResult List(int pageIndex, int pageSize)
+        public ActionResult List()
         {
-            var userList = _userService.QueryPaging(pageIndex, pageSize);
-            return View(userList);
+            return View();
+        }
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpResponse Search(string keywords, int? pageIndex, int? pageSize)
+        {
+            pageIndex = pageIndex.IfNull(1);
+            pageSize = pageSize.IfNull(10);
+            var userList = _userService.QueryPaging(pageIndex.Value, pageSize.Value);
+            return new HttpActionResponse<BootstrapPagination<User>>() { Result = PaginationUtil.ConvertToPagination(userList) };
         }
 
         /// <summary>

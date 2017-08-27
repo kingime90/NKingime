@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace NKingime.Core.Data
 {
     /// <summary>
@@ -12,5 +13,10 @@ namespace NKingime.Core.Data
         /// 主键
         /// </summary>
         public TKey Id { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public Nullable<DateTime> CreatedTime { get; set; }
     }
 }

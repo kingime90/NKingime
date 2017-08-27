@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Linq;
+
 namespace NKingime.Core.Data
 {
     /// <summary>
@@ -18,6 +20,17 @@ namespace NKingime.Core.Data
             get
             {
                 return _workContext;
+            }
+        }
+
+        /// <summary>
+        /// 默认分页排序
+        /// </summary>
+        public override Func<IQueryable<TEntity>, IQueryable<TEntity>> PagingOrder
+        {
+            get
+            {
+                return q => q.OrderByDescending(p => p.CreatedTime);
             }
         }
 

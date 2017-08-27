@@ -19,29 +19,25 @@ namespace NKingime.Entity
     public partial class Role : EntityBase<int>
     {
 
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Name { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public Nullable<int> Sort { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Remark { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public Nullable<int> CreatedBy { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public Nullable<System.DateTime> CreatedTime { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Nullable<int> Sort { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Nullable<int> CreatedBy { get; set; }
+
     }
 }

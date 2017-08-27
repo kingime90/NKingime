@@ -26,6 +26,11 @@ namespace NKingime.Core.Data
         IQueryable<TEntity> DbEntities { get; }
 
         /// <summary>
+        /// 默认分页排序
+        /// </summary>
+        Func<IQueryable<TEntity>, IQueryable<TEntity>> PagingOrder { get; }
+
+        /// <summary>
         /// 保存单个数据实体（新增）
         /// </summary>
         /// <param name="entity">数据实体</param>

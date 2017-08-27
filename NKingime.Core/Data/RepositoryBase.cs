@@ -33,6 +33,11 @@ namespace NKingime.Core.Data
         }
 
         /// <summary>
+        /// 默认分页排序
+        /// </summary>
+        public abstract Func<IQueryable<TEntity>, IQueryable<TEntity>> PagingOrder { get; }
+
+        /// <summary>
         /// 保存单个数据实体（新增）
         /// </summary>
         /// <param name="entity">数据实体</param>
@@ -265,7 +270,7 @@ namespace NKingime.Core.Data
         {
             var total = Count();
             var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
-            var queryable = DbEntities.Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            var queryable = PagingOrder(DbEntities).Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
             pagination.List = queryable.ToList();
             //
             return pagination;

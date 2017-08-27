@@ -121,6 +121,7 @@
     <Compile Include="Data\TransactionManage.cs" />
     <Compile Include="Data\UnitOfWorkContextBase.cs" />
     <Compile Include="Data\UnitOfWorkContextManage.cs" />
+    <Compile Include="Entity\BootstrapPagination.cs" />
     <Compile Include="Define\GlobalKeys.cs" />
     <Compile Include="Define\OrderBy.cs" />
     <Compile Include="Entity\Pagination.cs" />
@@ -132,6 +133,9 @@
     <Compile Include="Ioc\IDependency.cs" />
     <Compile Include="Ioc\DependencyModule.cs" />
     <Compile Include="Ioc\MvcControllerModule.cs" />
+    <Compile Include="Mvc\HttpActionResponse.cs" />
+    <Compile Include="Mvc\HttpListResponse.cs" />
+    <Compile Include="Mvc\IHttpResponse.cs" />
     <Compile Include="Mvc\TicketAuthorizeAttribute.cs" />
     <Compile Include="Mvc\TicketController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +143,7 @@
     <Compile Include="Service\ServiceBase.cs" />
     <Compile Include="Util\ArgumentUtil.cs" />
     <Compile Include="Util\JsonUtil.cs" />
+    <Compile Include="Util\PaginationUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Generic\" />

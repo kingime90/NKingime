@@ -1,35 +1,38 @@
-﻿@model Pagination<NKingime.Entity.User>
-@{
+﻿@{
     ViewBag.Title = "用户列表";
 }
-<table data-toggle="table" data-striped="true" data-pagination="true"
-       data-page-number="1" data-page-size="10" data-page-list="[5, 10, 25, 50, 100]"
-       data-search="true" data-show-refresh="true" data-show-toggle="true" data-detail-view="true">
+<div id="toolbar">
+    <div class="form-inline" role="form">
+        <div class="form-group">
+            <input name="search" class="form-control" type="text" placeholder="关键字" />
+        </div>
+        <button type="submit" class="btn btn-default">查询</button>
+    </div>
+</div>
+<table id="table"
+       data-toggle="table"
+       data-height="500"
+       data-toolbar="#toolbar"
+       data-show-refresh="true"
+       data-show-toggle="true"
+       data-show-columns="true"
+       data-pagination="true"
+       data-side-pagination="server"
+       data-page-number="1"
+       data-page-size="10"
+       data-page-list="[5, 10, 25, 50, 100]"
+       data-query-params="queryParams"
+       data-ajax="ajaxRequest">
     <thead>
         <tr>
-            <th data-checkbox="true"></th>
-            <th>用户名</th>
-            <th>昵称</th>
-            <th data-align="center" data-formatter="genderFormatter">性别</th>
-            <th>手机号</th>
-            <th>注册日期</th>
-            <th data-align="center" data-formatter="enabledFormatter">是否启用</th>
+            <th data-field="Username">用户名</th>
+            <th data-field="Nickname">昵称</th>
+            <th data-align="center" data-field="Gender">性别</th>
+            <th data-field="Mobile">手机号</th>
+            <th data-field="RegisterDate">注册日期</th>
+            <th data-align="center" data-field="Enabled">是否启用</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var user in Model.List)
-        {
-            <tr>
-                <td></td>
-                <td>@user.Username</td>
-                <td>@user.Nickname</td>
-                <td>@user.Gender</td>
-                <td>@user.Mobile</td>
-                <td>@user.RegisterDate</td>
-                <td>@user.Enabled</td>
-            </tr>
-        }
-    </tbody>
 </table>
 @section scripts{
     <script type="text/javascript">
@@ -44,6 +47,18 @@
         */
         function enabledFormatter(value, row, index) {
             
+        }
+        function queryParams() {
+            var params = {};
+            return params;
+        }
+        function ajaxRequest(params) {
+            apply.ajax.get({
+                url: '/User/Search', success: function (data, textStatus) {
+                    params.success(data.Result);
+                }
+            });
+            console.log(params);
         }
     </script>
 }

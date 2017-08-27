@@ -18,21 +18,21 @@ namespace NKingime.Entity
     /// </summary>
     public partial class Module : EntityBase<int>
     {
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Code { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Name { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public Nullable<int> ParentId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Code { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Nullable<int> ParentId { get; set; }
 
         /// <summary>
     	/// 
@@ -43,20 +43,16 @@ namespace NKingime.Entity
         /// 
         /// </summary>
         public Nullable<int> Sort { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Remark { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public Nullable<int> CreatedBy { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public Nullable<System.DateTime> CreatedTime { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Nullable<int> CreatedBy { get; set; }
+
     }
 }

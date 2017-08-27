@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace NKingime.Core.Data
 {
     /// <summary>
@@ -6,6 +7,6 @@ namespace NKingime.Core.Data
     /// </summary>
     public interface IEntity
     {
-
+        Nullable<DateTime> CreatedTime { get; set; }
     }
 }
