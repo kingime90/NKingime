@@ -5,7 +5,7 @@ using System;
 namespace NKingime.Core.Util
 {
     /// <summary>
-    /// 
+    /// Json工具
     /// </summary>
     public class JsonUtil
     {

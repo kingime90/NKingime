@@ -10,6 +10,14 @@ namespace NKingime.Core.Mvc
     public abstract class TicketController : Controller
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public TicketController() : base()
+        {
+
+        }
+
         private UserData userData;
 
         /// <summary>
@@ -29,11 +37,14 @@ namespace NKingime.Core.Mvc
         }
 
         /// <summary>
-        /// 
+        /// 成功的动作响应
         /// </summary>
-        public TicketController() : base()
+        /// <typeparam name="T"></typeparam>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public HttpActionResponse<T> OkActionResponse<T>(T result)
         {
-
+            return new HttpActionResponse<T>() { Result = result };
         }
     }
 }

@@ -132,7 +132,7 @@ namespace NKingime.Fight.Controllers
             pageIndex = pageIndex.IfNull(1);
             pageSize = pageSize.IfNull(10);
             var userList = _userService.QueryPaging(pageIndex.Value, pageSize.Value);
-            return new HttpActionResponse<BootstrapPagination<User>>() { Result = PaginationUtil.ConvertToPagination(userList) };
+            return OkActionResponse(PaginationUtil.ConvertToPagination(userList));
         }
 
         /// <summary>
