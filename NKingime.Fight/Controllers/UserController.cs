@@ -112,9 +112,9 @@ namespace NKingime.Fight.Controllers
         }
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List(int pageIndex, int pageSize)
         {
-            var userList = _userService.AllList();
+            var userList = _userService.QueryPaging(pageIndex, pageSize);
             return View(userList);
         }
 

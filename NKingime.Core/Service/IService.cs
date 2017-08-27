@@ -1,7 +1,10 @@
 ﻿using NKingime.Core.Data;
+using NKingime.Core.Define;
+using NKingime.Core.Entity;
 using NKingime.Core.Ioc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace NKingime.Core.Service
@@ -71,17 +74,123 @@ namespace NKingime.Core.Service
         TEntity GetById<TKey>(TKey key);
 
         /// <summary>
-        /// 全部列表
+        /// 记录数
         /// </summary>
         /// <returns></returns>
-        List<TEntity> AllList();
+        int Count();
 
         /// <summary>
-        /// 查询列表
+        /// 记录数
         /// </summary>
         /// <param name="predicate">筛选条件</param>
         /// <returns></returns>
-        List<TEntity> QueryList(Expression<Func<TEntity, bool>> predicate);
+        int Count(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <returns></returns>
+        List<TEntity> Query();
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <typeparam name="TKey">排序键</typeparam>
+        /// <param name="keySelector">用于从元素中提取键的函数</param>
+        /// <param name="orderBy">排序方式（默认 Asc）</param>
+        /// <returns></returns>
+        List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="orderSelector">排序选择委托</param>
+        /// <returns></returns>
+        List<TEntity> Query(Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector);
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="predicate">筛选条件</param>
+        /// <returns></returns>
+        List<TEntity> Query(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <typeparam name="TKey">排序键</typeparam>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="keySelector">用于从元素中提取键的函数</param>
+        /// <param name="orderBy">排序方式（默认 Asc）</param>
+        /// <returns></returns>
+        List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="orderSelector">排序选择委托</param>
+        /// <returns></returns>
+        List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector);
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <returns></returns>
+        Pagination<TEntity> QueryPaging(int pageIndex, int pageSize);
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="predicate">筛选条件</param>
+        /// <returns></returns>
+        Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <typeparam name="TKey">排序键</typeparam>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="keySelector">用于从元素中提取键的函数</param
+        /// <param name="orderBy">排序方式（默认 Asc）</param>
+        /// <returns></returns>
+        Pagination<TEntity> QueryPaging<TKey>(int pageIndex, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="orderSelector">排序选择委托</param>
+        /// <returns></returns>
+        Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector);
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <typeparam name="TKey">排序键</typeparam>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="keySelector">用于从元素中提取键的函数</param
+        /// <param name="orderBy">排序方式（默认 Asc）</param>
+        /// <returns></returns>
+        Pagination<TEntity> QueryPaging<TKey>(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="orderSelector">排序选择委托</param>
+        /// <returns></returns>
+        Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector);
     }
 
     /// <summary>

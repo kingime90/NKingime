@@ -1,38 +1,49 @@
-﻿@model IEnumerable<NKingime.Entity.User>
+﻿@model Pagination<NKingime.Entity.User>
 @{
     ViewBag.Title = "用户列表";
 }
 <table data-toggle="table" data-striped="true" data-pagination="true"
-       data-page-number="1" data-page-size="10" data-page-list="[10, 25, 50, 100]"
-       data-search="true" data-show-refresh="true" data-show-toggle="true" data-show-pagination-switch="true" data-detail-view="true">
+       data-page-number="1" data-page-size="10" data-page-list="[5, 10, 25, 50, 100]"
+       data-search="true" data-show-refresh="true" data-show-toggle="true" data-detail-view="true">
     <thead>
         <tr>
+            <th data-checkbox="true"></th>
             <th>用户名</th>
             <th>昵称</th>
-            <th data-align="center">性别</th>
+            <th data-align="center" data-formatter="genderFormatter">性别</th>
             <th>手机号</th>
             <th>注册日期</th>
-            <th data-align="center">是否启用</th>
+            <th data-align="center" data-formatter="enabledFormatter">是否启用</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model)
+        @foreach (var user in Model.List)
         {
             <tr>
+                <td></td>
                 <td>@user.Username</td>
                 <td>@user.Nickname</td>
                 <td>@user.Gender</td>
                 <td>@user.Mobile</td>
                 <td>@user.RegisterDate</td>
-                <td data-formatter="enabledFormatter">@user.Enabled</td>
+                <td>@user.Enabled</td>
             </tr>
         }
     </tbody>
 </table>
 @section scripts{
     <script type="text/javascript">
+        /*
+        * 性别格式转换
+        */
+        function genderFormatter(value, row, index) {
+
+        }
+        /*
+        * 是否启用
+        */
         function enabledFormatter(value, row, index) {
-            alert(value);
+            
         }
     </script>
 }

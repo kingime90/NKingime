@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using NKingime.Core.Define;
+using NKingime.Core.Entity;
+using NKingime.Core.Data;
 
 namespace NKingime.Core.Data
 {
@@ -147,22 +150,234 @@ namespace NKingime.Core.Data
         }
 
         /// <summary>
-        /// 全部列表
+        /// 记录数
         /// </summary>
         /// <returns></returns>
-        public List<TEntity> AllList()
+        public int Count()
+        {
+            return DbEntities.Count();
+        }
+
+        /// <summary>
+        /// 记录数
+        /// </summary>
+        /// <param name="predicate">筛选条件</param>
+        /// <returns></returns>
+        public int Count(Expression<Func<TEntity, bool>> predicate)
+        {
+            return DbEntities.Count(predicate);
+        }
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <returns></returns>
+        public List<TEntity> Query()
         {
             return DbEntities.ToList();
         }
 
         /// <summary>
-        /// 查询列表
+        /// 查询
+        /// </summary>
+        /// <typeparam name="TKey">排序键</typeparam>
+        /// <param name="keySelector">用于从元素中提取键的函数</param>
+        /// <param name="orderBy">排序方式（默认 Asc）</param>
+        /// <returns></returns>
+        public List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        {
+            IQueryable<TEntity> queryable;
+            if (orderBy == OrderBy.Desc)
+            {
+                queryable = DbEntities.OrderByDescending(keySelector);
+            }
+            else
+            {
+                queryable = DbEntities.OrderBy(keySelector);
+            }
+            return queryable.ToList();
+        }
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="orderSelector">排序选择委托</param>
+        /// <returns></returns>
+        public List<TEntity> Query(Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
+        {
+            ArgumentUtil.ThrowIfNull(orderSelector, nameof(orderSelector));
+            //
+            return orderSelector(DbEntities).ToList();
+        }
+
+        /// <summary>
+        /// 查询
         /// </summary>
         /// <param name="predicate">筛选条件</param>
         /// <returns></returns>
-        public List<TEntity> QueryList(Expression<Func<TEntity, bool>> predicate)
+        public List<TEntity> Query(Expression<Func<TEntity, bool>> predicate)
         {
             return DbEntities.Where(predicate).ToList();
+        }
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <typeparam name="TKey">排序键</typeparam>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="keySelector">用于从元素中提取键的函数</param>
+        /// <param name="orderBy">排序方式（默认 Asc）</param>
+        /// <returns></returns>
+        public List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        {
+            var queryable = DbEntities.Where(predicate);
+            if (orderBy == OrderBy.Desc)
+            {
+                queryable = queryable.OrderByDescending(keySelector);
+            }
+            else
+            {
+                queryable = queryable.OrderBy(keySelector);
+            }
+            return queryable.ToList();
+        }
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="orderSelector">排序选择委托</param>
+        /// <returns></returns>
+        public List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
+        {
+            ArgumentUtil.ThrowIfNull(orderSelector, nameof(orderSelector));
+            //
+            return orderSelector(DbEntities.Where(predicate)).ToList();
+        }
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <returns></returns>
+        public Pagination<TEntity> QueryPaging(int pageIndex, int pageSize)
+        {
+            var total = Count();
+            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
+            var queryable = DbEntities.Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            pagination.List = queryable.ToList();
+            //
+            return pagination;
+        }
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="predicate">筛选条件</param>
+        /// <returns></returns>
+        public Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate)
+        {
+            var total = Count(predicate);
+            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
+            var queryable = DbEntities.Where(predicate).Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            pagination.List = queryable.ToList();
+            //
+            return pagination;
+        }
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <typeparam name="TKey">排序键</typeparam>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="keySelector">用于从元素中提取键的函数</param
+        /// <param name="orderBy">排序方式（默认 Asc）</param>
+        /// <returns></returns>
+        public Pagination<TEntity> QueryPaging<TKey>(int pageIndex, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        {
+            var total = Count();
+            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
+            IQueryable<TEntity> queryable;
+            if (orderBy == OrderBy.Desc)
+            {
+                queryable = DbEntities.OrderByDescending(keySelector);
+            }
+            else
+            {
+                queryable = DbEntities.OrderBy(keySelector);
+            }
+            queryable = queryable.Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            pagination.List = queryable.ToList();
+            //
+            return pagination;
+        }
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="orderSelector">排序选择委托</param>
+        /// <returns></returns>
+        public Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
+        {
+            var total = Count();
+            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
+            var queryable = orderSelector(DbEntities).Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            pagination.List = queryable.ToList();
+            //
+            return pagination;
+        }
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <typeparam name="TKey">排序键</typeparam>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="keySelector">用于从元素中提取键的函数</param
+        /// <param name="orderBy">排序方式（默认 Asc）</param>
+        /// <returns></returns>
+        public Pagination<TEntity> QueryPaging<TKey>(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        {
+            var total = Count(predicate);
+            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
+            var queryable = DbEntities.Where(predicate);
+            if (orderBy == OrderBy.Desc)
+            {
+                queryable = queryable.OrderByDescending(keySelector);
+            }
+            else
+            {
+                queryable = queryable.OrderBy(keySelector);
+            }
+            queryable = queryable.Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            pagination.List = queryable.ToList();
+            //
+            return pagination;
+        }
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="orderSelector">排序选择委托</param>
+        /// <returns></returns>
+        public Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
+        {
+            var total = Count(predicate);
+            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
+            var queryable = orderSelector(DbEntities.Where(predicate)).Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            pagination.List = queryable.ToList();
+            //
+            return pagination;
         }
     }
 }

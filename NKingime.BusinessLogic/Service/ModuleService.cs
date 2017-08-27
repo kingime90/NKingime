@@ -30,7 +30,7 @@ namespace NKingime.BusinessLogic.Service
         /// <returns></returns>
         public List<Module> GetListByUserId(int userId)
         {
-            var modules = _moduleRepository.AllList();
+            var modules = _moduleRepository.Query();
             return BuildChilds(modules);
         }
 

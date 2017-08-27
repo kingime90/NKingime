@@ -133,7 +133,7 @@ namespace NKingime.Core.Data
                 SetAutoDetectChangesEnabled(false);
                 foreach (TEntity entity in entities)
                 {
-                    RegisterNew(entity);
+                    RegisterNew<TEntity>(entity);
                 }
             }
             finally

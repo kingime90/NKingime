@@ -122,6 +122,8 @@
     <Compile Include="Data\UnitOfWorkContextBase.cs" />
     <Compile Include="Data\UnitOfWorkContextManage.cs" />
     <Compile Include="Define\GlobalKeys.cs" />
+    <Compile Include="Define\OrderBy.cs" />
+    <Compile Include="Entity\Pagination.cs" />
     <Compile Include="Entity\UserData.cs" />
     <Compile Include="Extentsion\BooleanExtentsion.cs" />
     <Compile Include="Extentsion\GenericExtentsion.cs" />
