@@ -32,7 +32,7 @@ namespace NKingime.Core.Mvc
                 return false;
             }
             //
-            FormsAuthenticationTicket authTicket = null;
+            FormsAuthenticationTicket authTicket;
             try
             {
                 authTicket = FormsAuthentication.Decrypt(authCookie.Value);//解密
@@ -42,12 +42,21 @@ namespace NKingime.Core.Mvc
                 return false;
             }
             //
-            if (authTicket == null)
+            if (authTicket == null || string.IsNullOrWhiteSpace(authTicket.UserData))
             {
                 return false;
             }
             //
-            var userData = JsonUtil.Deserialize<UserData>(authTicket.UserData.FromBase64());
+            UserData userData;
+            try
+            {
+                userData = JsonUtil.Deserialize<UserData>(authTicket.UserData.FromBase64());
+            }
+            catch
+            {
+                return false;
+            }
+            //
             if (userData == null)
             {
                 return false;
