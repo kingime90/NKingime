@@ -99,7 +99,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
+        List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy);
 
         /// <summary>
         /// 查询
@@ -123,7 +123,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
+        List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy);
 
         /// <summary>
         /// 查询

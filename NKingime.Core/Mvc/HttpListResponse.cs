@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NKingime.Core.Mvc
 {
@@ -12,12 +8,20 @@ namespace NKingime.Core.Mvc
     /// </summary>
     public class HttpListResponse<T> : HttpActionResponse
     {
+
+        /// <summary>
+        /// HTTP列表响应成功
+        /// </summary>
         public HttpListResponse() : base()
         {
 
         }
 
-        public HttpListResponse(IEnumerable<T> result) : this()
+        /// <summary>
+        /// HTTP列表响应成功
+        /// </summary>
+        /// <param name="result">结果</param>
+        public HttpListResponse(IEnumerable<T> result) : base()
         {
             Result = result;
         }

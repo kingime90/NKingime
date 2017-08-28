@@ -72,8 +72,15 @@ namespace NKingime.Core.Mvc
         /// <param name="filterContext">封装有关使用 System.Web.Mvc.AuthorizeAttribute 的信息。filterContext 对象包括控制器、HTTP 上下文、请求上下文、操作结果和路由数据</param>
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            string redirectUrl = HttpUtility.UrlEncode(filterContext.HttpContext.Request.Url.PathAndQuery);
-            redirectUrl = $"{FormsAuthentication.LoginUrl}?returnUrl={redirectUrl}";
+            string redirectUrl = filterContext.HttpContext.Request.Url.PathAndQuery;
+            if (redirectUrl != "/")
+            {
+                redirectUrl = $"{FormsAuthentication.LoginUrl}?returnUrl={HttpUtility.UrlEncode(redirectUrl)}";
+            }
+            else
+            {
+                redirectUrl = FormsAuthentication.LoginUrl;
+            }
             filterContext.Result = new RedirectResult(redirectUrl);
         }
     }

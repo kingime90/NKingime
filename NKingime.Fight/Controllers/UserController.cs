@@ -1,14 +1,11 @@
-﻿using NKingime.BusinessLogic.IService;
-using NKingime.Core.Define;
+﻿using System;
+using NKingime.BusinessLogic.IService;
 using NKingime.Core.Entity;
 using NKingime.Core.Extentsion;
 using NKingime.Core.Mvc;
 using NKingime.Core.Util;
 using NKingime.Entity;
 using NKingime.Fight.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
@@ -102,7 +99,7 @@ namespace NKingime.Fight.Controllers
             }
             //
             Response.Cookies.Add(authCookie);
-            return Redirect(!string.IsNullOrWhiteSpace(returnUrl) ? returnUrl : FormsAuthentication.DefaultUrl);
+            return Redirect(returnUrl.IfNullOrWhiteSpace(FormsAuthentication.DefaultUrl));
         }
 
         /// <summary>
@@ -136,9 +133,9 @@ namespace NKingime.Fight.Controllers
         {
             pageNumber = pageNumber.IfNull(1);
             pageSize = pageSize.IfNull(10);
-            Expression<Func<User, bool>> predicate = p => true;
             keyword = keyword.GetString();
             sortOrder = sortOrder.GetString();
+            Expression<Func<User, bool>> predicate = null;
             if (keyword.Length > 0)
             {
                 predicate = p => p.Username.Contains(keyword) || p.Nickname.Contains(keyword);

@@ -170,7 +170,11 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public int Count(Expression<Func<TEntity, bool>> predicate)
         {
-            return DbEntities.Count(predicate);
+            if (predicate != null)
+            {
+                return DbEntities.Count(predicate);
+            }
+            return Count();
         }
 
         /// <summary>
@@ -189,18 +193,9 @@ namespace NKingime.Core.Data
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        public List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
         {
-            IQueryable<TEntity> queryable;
-            if (orderBy == OrderBy.Desc)
-            {
-                queryable = DbEntities.OrderByDescending(keySelector);
-            }
-            else
-            {
-                queryable = DbEntities.OrderBy(keySelector);
-            }
-            return queryable.ToList();
+            return Query(null, keySelector, orderBy);
         }
 
         /// <summary>
@@ -210,9 +205,7 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public List<TEntity> Query(Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
         {
-            ArgumentUtil.ThrowIfNull(orderSelector, nameof(orderSelector));
-            //
-            return orderSelector(DbEntities).ToList();
+            return Query(null, orderSelector);
         }
 
         /// <summary>
@@ -222,7 +215,7 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public List<TEntity> Query(Expression<Func<TEntity, bool>> predicate)
         {
-            return DbEntities.Where(predicate).ToList();
+            return Query(predicate, null);
         }
 
         /// <summary>
@@ -233,9 +226,14 @@ namespace NKingime.Core.Data
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        public List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
         {
-            var queryable = DbEntities.Where(predicate);
+            var queryable = DbEntities;
+            if (predicate != null)
+            {
+                queryable = queryable.Where(predicate);
+            }
+            //
             if (orderBy == OrderBy.Desc)
             {
                 queryable = queryable.OrderByDescending(keySelector);
@@ -244,6 +242,7 @@ namespace NKingime.Core.Data
             {
                 queryable = queryable.OrderBy(keySelector);
             }
+            //
             return queryable.ToList();
         }
 
@@ -255,9 +254,18 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
         {
-            ArgumentUtil.ThrowIfNull(orderSelector, nameof(orderSelector));
+            var queryable = DbEntities;
+            if (predicate != null)
+            {
+                queryable = queryable.Where(predicate);
+            }
             //
-            return orderSelector(DbEntities.Where(predicate)).ToList();
+            if (orderSelector != null)
+            {
+                queryable = orderSelector(queryable);
+            }
+            //
+            return queryable.ToList();
         }
 
         /// <summary>
@@ -268,12 +276,7 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public Pagination<TEntity> QueryPaging(int pageNumber, int pageSize)
         {
-            var total = Count();
-            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
-            var queryable = PagingOrder(DbEntities).Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
-            pagination.List = queryable.ToList();
-            //
-            return pagination;
+            return QueryPaging(pageNumber, pageSize, null, null);
         }
 
         /// <summary>
@@ -285,12 +288,7 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public Pagination<TEntity> QueryPaging(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate)
         {
-            var total = Count(predicate);
-            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
-            var queryable = PagingOrder(DbEntities.Where(predicate)).Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
-            pagination.List = queryable.ToList();
-            //
-            return pagination;
+            return QueryPaging(pageNumber, pageSize, predicate, null);
         }
 
         /// <summary>
@@ -302,23 +300,9 @@ namespace NKingime.Core.Data
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
         {
-            var total = Count();
-            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
-            IQueryable<TEntity> queryable;
-            if (orderBy == OrderBy.Desc)
-            {
-                queryable = DbEntities.OrderByDescending(keySelector);
-            }
-            else
-            {
-                queryable = DbEntities.OrderBy(keySelector);
-            }
-            queryable = queryable.Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
-            pagination.List = queryable.ToList();
-            //
-            return pagination;
+            return QueryPaging(pageNumber, pageSize, null, keySelector, orderBy);
         }
 
         /// <summary>
@@ -330,12 +314,7 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public Pagination<TEntity> QueryPaging(int pageNumber, int pageSize, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
         {
-            var total = Count();
-            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
-            var queryable = orderSelector(DbEntities).Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
-            pagination.List = queryable.ToList();
-            //
-            return pagination;
+            return QueryPaging(pageNumber, pageSize, null, orderSelector);
         }
 
         /// <summary>
@@ -348,11 +327,22 @@ namespace NKingime.Core.Data
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
         {
             var total = Count(predicate);
             var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
-            var queryable = DbEntities.Where(predicate);
+            if (total == 0)
+            {
+                pagination.List = new List<TEntity>();
+                return pagination;
+            }
+            //
+            var queryable = DbEntities;
+            if (predicate != null)
+            {
+                queryable = queryable.Where(predicate);
+            }
+            //
             if (orderBy == OrderBy.Desc)
             {
                 queryable = queryable.OrderByDescending(keySelector);
@@ -379,7 +369,23 @@ namespace NKingime.Core.Data
         {
             var total = Count(predicate);
             var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
-            var queryable = orderSelector(DbEntities.Where(predicate)).Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
+            if (total == 0)
+            {
+                pagination.List = new List<TEntity>();
+                return pagination;
+            }
+            //
+            var queryable = DbEntities;
+            if (predicate != null)
+            {
+                queryable = queryable.Where(predicate);
+            }
+            //
+            if (orderSelector == null)
+            {
+                orderSelector = PagingOrder;
+            }
+            queryable = orderSelector(queryable).Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
             pagination.List = queryable.ToList();
             //
             return pagination;
