@@ -263,14 +263,14 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 查询分页
         /// </summary>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging(int pageIndex, int pageSize)
+        public Pagination<TEntity> QueryPaging(int pageNumber, int pageSize)
         {
             var total = Count();
-            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
-            var queryable = PagingOrder(DbEntities).Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
+            var queryable = PagingOrder(DbEntities).Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
             pagination.List = queryable.ToList();
             //
             return pagination;
@@ -279,15 +279,15 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 查询分页
         /// </summary>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="predicate">筛选条件</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate)
+        public Pagination<TEntity> QueryPaging(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate)
         {
             var total = Count(predicate);
-            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
-            var queryable = DbEntities.Where(predicate).Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
+            var queryable = PagingOrder(DbEntities.Where(predicate)).Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
             pagination.List = queryable.ToList();
             //
             return pagination;
@@ -297,15 +297,15 @@ namespace NKingime.Core.Data
         /// 查询分页
         /// </summary>
         /// <typeparam name="TKey">排序键</typeparam>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging<TKey>(int pageIndex, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
         {
             var total = Count();
-            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
+            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
             IQueryable<TEntity> queryable;
             if (orderBy == OrderBy.Desc)
             {
@@ -315,7 +315,7 @@ namespace NKingime.Core.Data
             {
                 queryable = DbEntities.OrderBy(keySelector);
             }
-            queryable = queryable.Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            queryable = queryable.Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
             pagination.List = queryable.ToList();
             //
             return pagination;
@@ -324,15 +324,15 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 查询分页
         /// </summary>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="orderSelector">排序选择委托</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
+        public Pagination<TEntity> QueryPaging(int pageNumber, int pageSize, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
         {
             var total = Count();
-            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
-            var queryable = orderSelector(DbEntities).Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
+            var queryable = orderSelector(DbEntities).Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
             pagination.List = queryable.ToList();
             //
             return pagination;
@@ -342,16 +342,16 @@ namespace NKingime.Core.Data
         /// 查询分页
         /// </summary>
         /// <typeparam name="TKey">排序键</typeparam>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="predicate">筛选条件</param>
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging<TKey>(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
+        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc)
         {
             var total = Count(predicate);
-            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
+            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
             var queryable = DbEntities.Where(predicate);
             if (orderBy == OrderBy.Desc)
             {
@@ -361,7 +361,7 @@ namespace NKingime.Core.Data
             {
                 queryable = queryable.OrderBy(keySelector);
             }
-            queryable = queryable.Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            queryable = queryable.Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
             pagination.List = queryable.ToList();
             //
             return pagination;
@@ -370,16 +370,16 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 查询分页
         /// </summary>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="predicate">筛选条件</param>
         /// <param name="orderSelector">排序选择委托</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
+        public Pagination<TEntity> QueryPaging(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector)
         {
             var total = Count(predicate);
-            var pagination = new Pagination<TEntity>(pageIndex, pageSize, total);
-            var queryable = orderSelector(DbEntities.Where(predicate)).Skip(pagination.PageSize * (pagination.PageIndex - 1)).Take(pagination.PageSize);
+            var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
+            var queryable = orderSelector(DbEntities.Where(predicate)).Skip(pagination.PageSize * (pagination.PageNumber - 1)).Take(pagination.PageSize);
             pagination.List = queryable.ToList();
             //
             return pagination;

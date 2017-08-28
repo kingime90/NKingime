@@ -142,6 +142,7 @@
     <Compile Include="Service\IService.cs" />
     <Compile Include="Service\ServiceBase.cs" />
     <Compile Include="Util\ArgumentUtil.cs" />
+    <Compile Include="Util\EnumUtil.cs" />
     <Compile Include="Util\JsonUtil.cs" />
     <Compile Include="Util\PaginationUtil.cs" />
   </ItemGroup>

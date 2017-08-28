@@ -4,9 +4,9 @@
 <div id="toolbar">
     <div class="form-inline" role="form">
         <div class="form-group">
-            <input name="search" class="form-control" type="text" placeholder="关键字" />
+            <input name="keyword" class="form-control" type="text" placeholder="关键字" />
         </div>
-        <button type="submit" class="btn btn-default">查询</button>
+        <button id="search" type="submit" class="btn btn-default">查询</button>
     </div>
 </div>
 <table id="table"
@@ -21,21 +21,30 @@
        data-page-number="1"
        data-page-size="10"
        data-page-list="[5, 10, 25, 50, 100]"
+       data-sort-name="Id"
+       data-sort-order="asc"
+       data-query-params-type=""
        data-query-params="queryParams"
        data-ajax="ajaxRequest">
     <thead>
         <tr>
-            <th data-field="Username">用户名</th>
-            <th data-field="Nickname">昵称</th>
-            <th data-align="center" data-field="Gender">性别</th>
-            <th data-field="Mobile">手机号</th>
-            <th data-field="RegisterDate">注册日期</th>
-            <th data-align="center" data-field="Enabled">是否启用</th>
+            <th data-field="Username" data-sortable="true">用户名</th>
+            <th data-field="Nickname" data-sortable="true">昵称</th>
+            <th data-align="center" data-field="Gender" data-sortable="true">性别</th>
+            <th data-field="Mobile" data-sortable="true">手机号</th>
+            <th data-field="RegisterDate" data-sortable="true">注册日期</th>
+            <th data-align="center" data-field="Enabled" data-sortable="true">是否启用</th>
         </tr>
     </thead>
 </table>
 @section scripts{
     <script type="text/javascript">
+        var $table = $('#table'), $toolbar = $('#toolbar'), $search = $('#search');
+        $(function () {
+            $search.click(function () {
+                $table.bootstrapTable('refresh');
+            });
+        });
         /*
         * 性别格式转换
         */
@@ -46,19 +55,29 @@
         * 是否启用
         */
         function enabledFormatter(value, row, index) {
-            
+
         }
-        function queryParams() {
-            var params = {};
+        function queryParams(params) {
+            params = params || {};
+            $toolbar.find('input[name]').each(function () {
+                params[$(this).attr('name')] = $(this).val();
+            });
             return params;
         }
         function ajaxRequest(params) {
             apply.ajax.get({
-                url: '/User/Search', success: function (data, textStatus) {
+                url: '/User/Search', data: params.data, success: function (data, textStatus) {
                     params.success(data.Result);
                 }
             });
             console.log(params);
+        }
+        /*
+        * 查询
+        */
+        function btnSearch() {
+            debugger;
+            $table.bootstrapTable('refresh');
         }
     </script>
 }

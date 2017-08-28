@@ -1,4 +1,5 @@
 ﻿using NKingime.BusinessLogic.IService;
+using NKingime.Core.Define;
 using NKingime.Core.Entity;
 using NKingime.Core.Extentsion;
 using NKingime.Core.Mvc;
@@ -7,6 +8,8 @@ using NKingime.Entity;
 using NKingime.Fight.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -122,16 +125,29 @@ namespace NKingime.Fight.Controllers
         /// <summary>
         /// 查询
         /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="searchText">关键字</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
+        /// <param name="sortName">排序名称</param>
+        /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
         [HttpGet]
-        public IHttpResponse Search(string keywords, int? pageIndex, int? pageSize)
+        public IHttpResponse Search(string keyword, int? pageNumber, int? pageSize, string sortName, string sortOrder)
         {
-            pageIndex = pageIndex.IfNull(1);
+            pageNumber = pageNumber.IfNull(1);
             pageSize = pageSize.IfNull(10);
-            var userList = _userService.QueryPaging(pageIndex.Value, pageSize.Value);
+            Expression<Func<User, bool>> predicate = p => true;
+            keyword = keyword.GetString();
+            sortOrder = sortOrder.GetString();
+            if (keyword.Length > 0)
+            {
+                predicate = p => p.Username.Contains(keyword) || p.Nickname.Contains(keyword);
+            }
+            var orderBy = PaginationUtil.GetOrderBy(sortOrder);
+            var userList = _userService.QueryPaging(pageNumber.Value, pageSize.Value, predicate, (queryable) =>
+             {
+                 return PaginationUtil.PagingOrder(queryable, sortName, orderBy);
+             });
             return OkActionResponse(PaginationUtil.ConvertToPagination(userList));
         }
 

@@ -158,61 +158,61 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 查询分页
         /// </summary>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <returns></returns>
-        Pagination<TEntity> QueryPaging(int pageIndex, int pageSize);
+        Pagination<TEntity> QueryPaging(int pageNumber, int pageSize);
 
         /// <summary>
         /// 查询分页
         /// </summary>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="predicate">筛选条件</param>
         /// <returns></returns>
-        Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate);
+        Pagination<TEntity> QueryPaging(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
         /// 查询分页
         /// </summary>
         /// <typeparam name="TKey">排序键</typeparam>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        Pagination<TEntity> QueryPaging<TKey>(int pageIndex, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
+        Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
 
         /// <summary>
         /// 查询分页
         /// </summary>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="orderSelector">排序选择委托</param>
         /// <returns></returns>
-        Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector);
+        Pagination<TEntity> QueryPaging(int pageNumber, int pageSize, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector);
 
         /// <summary>
         /// 查询分页
         /// </summary>
         /// <typeparam name="TKey">排序键</typeparam>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="predicate">筛选条件</param>
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        Pagination<TEntity> QueryPaging<TKey>(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
+        Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy = OrderBy.Asc);
 
         /// <summary>
         /// 查询分页
         /// </summary>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="predicate">筛选条件</param>
         /// <param name="orderSelector">排序选择委托</param>
         /// <returns></returns>
-        Pagination<TEntity> QueryPaging(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector);
+        Pagination<TEntity> QueryPaging(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>> orderSelector);
     }
 
     /// <summary>

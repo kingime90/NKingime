@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System;
 
@@ -9,9 +10,24 @@ namespace NKingime.Core.Util
     /// </summary>
     public class JsonUtil
     {
+        /// <summary>
+        /// JSON转换器的默认设置
+        /// </summary>
+        static JsonUtil()
+        {
+            if (JsonConvert.DefaultSettings == null)
+            {
+                JsonConvert.DefaultSettings = () =>
+                {
+                    var serializerSettings = new JsonSerializerSettings();
+                    serializerSettings.Converters.Add(new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" });
+                    return serializerSettings;
+                };
+            }
+        }
 
         /// <summary>
-        /// 
+        /// 序列化的JSON的字符串
         /// </summary>
         /// <param name="o"></param>
         /// <returns></returns>
@@ -21,7 +37,7 @@ namespace NKingime.Core.Util
         }
 
         /// <summary>
-        /// 
+        /// 序列化的JSON的字符串
         /// </summary>
         /// <param name="o"></param>
         /// <param name="format"></param>
@@ -32,7 +48,7 @@ namespace NKingime.Core.Util
         }
 
         /// <summary>
-        /// 
+        /// 反序列化的JSON的动态类型
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -42,7 +58,7 @@ namespace NKingime.Core.Util
         }
 
         /// <summary>
-        /// 
+        /// 反序列化的JSON的对象类型
         /// </summary>
         /// <param name="value"></param>
         /// <param name="type"></param>
@@ -53,7 +69,7 @@ namespace NKingime.Core.Util
         }
 
         /// <summary>
-        /// 
+        /// 反序列化的JSON的实体类型
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
@@ -64,7 +80,7 @@ namespace NKingime.Core.Util
         }
 
         /// <summary>
-        /// 反序列化的JSON的匿名类型。
+        /// 反序列化的JSON的匿名类型
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>

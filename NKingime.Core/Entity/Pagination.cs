@@ -15,11 +15,11 @@ namespace NKingime.Core.Entity
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pageIndex">页码</param>
+        /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
         /// <param name="totalCount">总记录</param>
         /// <param name="pageCount">总页数</param>
-        public Pagination(int pageIndex, int pageSize, int totalCount)
+        public Pagination(int pageNumber, int pageSize, int totalCount)
         {
             if (pageSize <= 0)
             {
@@ -35,22 +35,22 @@ namespace NKingime.Core.Entity
             //
             PageCount = totalCount % pageSize == 0 ? totalCount / pageSize : totalCount / pageSize + 1;
             //
-            if (pageIndex <= 0 || PageCount == 0)
+            if (pageNumber <= 0 || PageCount == 0)
             {
-                pageIndex = 1;
+                pageNumber = 1;
             }
-            if (pageIndex > PageCount && PageCount != 0)
+            if (pageNumber > PageCount && PageCount != 0)
             {
-                pageIndex = PageCount;
+                pageNumber = PageCount;
             }
-            PageIndex = pageIndex;
+            PageNumber = pageNumber;
             //
         }
 
         /// <summary>
         /// 页码
         /// </summary>
-        public int PageIndex { get; private set; }
+        public int PageNumber { get; private set; }
 
         /// <summary>
         /// 页大小
