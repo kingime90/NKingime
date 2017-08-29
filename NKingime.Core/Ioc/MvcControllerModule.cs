@@ -1,7 +1,8 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using NKingime.Core.Config;
+using NKingime.Core.Extentsion;
 using System;
-using System.Configuration;
 using System.Linq;
 using System.Reflection;
 
@@ -14,19 +15,17 @@ namespace NKingime.Core.Ioc
     {
 
         /// <summary>
-        /// 
-        /// </summary>
-        public const string AssemblyTypesKey = "Controller.Types";
-
-        /// <summary>
-        /// 
+        /// 加载模块
         /// </summary>
         /// <param name="builder"></param>
         protected override void Load(ContainerBuilder builder)
         {
-            var assemblyTypes = ConfigurationManager.AppSettings[AssemblyTypesKey];
-            var assemblies = assemblyTypes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(p => Assembly.Load(p)).ToArray();
-            builder.RegisterControllers(assemblies);
+            var mvcControllerAssemblys = AppSettingConfig.IocMvcControllerAssemblys;
+            if (!mvcControllerAssemblys.IsNullOrWhiteSpace())
+            {
+                var assemblies = mvcControllerAssemblys.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(p => Assembly.Load(p)).ToArray();
+                builder.RegisterControllers(assemblies);
+            }
         }
     }
 }

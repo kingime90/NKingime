@@ -1,8 +1,5 @@
-﻿using System;
+﻿using NKingime.Core.Config;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NKingime.Core.Entity
 {
@@ -23,7 +20,7 @@ namespace NKingime.Core.Entity
         {
             if (pageSize <= 0)
             {
-                pageSize = 10;
+                pageSize = AppSettingConfig.ViewPageSize;
             }
             PageSize = pageSize;
             //
@@ -35,16 +32,15 @@ namespace NKingime.Core.Entity
             //
             PageCount = totalCount % pageSize == 0 ? totalCount / pageSize : totalCount / pageSize + 1;
             //
-            if (pageNumber <= 0 || PageCount == 0)
+            if (pageNumber <= 0)
             {
-                pageNumber = 1;
+                pageNumber = AppSettingConfig.ViewPageNumber;
             }
             if (pageNumber > PageCount && PageCount != 0)
             {
                 pageNumber = PageCount;
             }
             PageNumber = pageNumber;
-            //
         }
 
         /// <summary>

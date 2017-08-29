@@ -1,11 +1,9 @@
-﻿using NKingime.Core.Define;
+﻿using NKingime.Core.Config;
+using NKingime.Core.Define;
 using NKingime.Core.Entity;
-using System;
-using System.Collections.Generic;
+using NKingime.Core.Extentsion;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NKingime.Core.Util
 {
@@ -14,6 +12,7 @@ namespace NKingime.Core.Util
     /// </summary>
     public class PaginationUtil
     {
+
         /// <summary>
         /// 转换到分页
         /// </summary>
@@ -63,6 +62,22 @@ namespace NKingime.Core.Util
         public static OrderBy GetOrderBy(string sortOrder, OrderBy defaultValue = OrderBy.Asc)
         {
             return EnumUtil.ConvertToEnum<OrderBy>(sortOrder, defaultValue, null);
+        }
+
+        /// <summary>
+        /// 获取视图分页首页页码
+        /// </summary>
+        public static int GetViewPageNumber(int? pageNumber)
+        {
+            return pageNumber.IfNull(AppSettingConfig.ViewPageNumber).Value;
+        }
+
+        /// <summary>
+        /// 获取视图分页页大小
+        /// </summary>
+        public static int GetViewPageSize(int? pageSize)
+        {
+            return pageSize.IfNull(AppSettingConfig.ViewPageSize).Value;
         }
     }
 }

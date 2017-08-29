@@ -131,8 +131,8 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public IHttpResponse Search(string keyword, int? pageNumber, int? pageSize, string sortName, string sortOrder)
         {
-            pageNumber = pageNumber.IfNull(1);
-            pageSize = pageSize.IfNull(10);
+            pageNumber = PaginationUtil.GetViewPageNumber(pageNumber);
+            pageSize = PaginationUtil.GetViewPageSize(pageSize);
             keyword = keyword.GetString();
             sortOrder = sortOrder.GetString();
             Expression<Func<User, bool>> predicate = null;

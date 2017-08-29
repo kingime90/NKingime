@@ -121,6 +121,7 @@
     <Compile Include="Data\TransactionManage.cs" />
     <Compile Include="Data\UnitOfWorkContextBase.cs" />
     <Compile Include="Data\UnitOfWorkContextManage.cs" />
+    <Compile Include="Config\AppSettingConfig.cs" />
     <Compile Include="Entity\BootstrapPagination.cs" />
     <Compile Include="Define\GlobalKeys.cs" />
     <Compile Include="Define\OrderBy.cs" />

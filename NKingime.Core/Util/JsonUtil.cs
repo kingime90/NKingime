@@ -10,6 +10,7 @@ namespace NKingime.Core.Util
     /// </summary>
     public class JsonUtil
     {
+
         /// <summary>
         /// JSON转换器的默认设置
         /// </summary>
