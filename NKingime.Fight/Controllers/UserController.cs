@@ -80,18 +80,15 @@ namespace NKingime.Fight.Controllers
             var now = DateTime.Now;
             var userData = new UserData { UserId = user.Id, Username = user.Username, Ticks = now.Ticks };
             var userDataBase64 = JsonUtil.Serialize(userData).ToBase64();
-            var authTicket = new FormsAuthenticationTicket(1, user.Username, now, now.AddMinutes(FormsAuthentication.Timeout.Minutes), model.RememberMe, userDataBase64, FormsAuthentication.FormsCookiePath);
+            var authTicket = new FormsAuthenticationTicket(1, user.Username, now, now.AddMinutes(FormsAuthentication.Timeout.TotalMinutes), model.RememberMe, userDataBase64, FormsAuthentication.FormsCookiePath);
             string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
             var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
             {
                 HttpOnly = true,
-                Secure = FormsAuthentication.RequireSSL,
-                Path = FormsAuthentication.FormsCookiePath
+                Domain = FormsAuthentication.CookieDomain,
+                Path = FormsAuthentication.FormsCookiePath,
+                Secure = FormsAuthentication.RequireSSL
             };
-            if (FormsAuthentication.CookieDomain != null)
-            {
-                authCookie.Domain = FormsAuthentication.CookieDomain;
-            }
             //
             if (model.RememberMe)
             {
@@ -138,7 +135,7 @@ namespace NKingime.Fight.Controllers
             Expression<Func<User, bool>> predicate = null;
             if (keyword.Length > 0)
             {
-                predicate = p => p.Username.Contains(keyword) || p.Nickname.Contains(keyword);
+                predicate = p => p.Username.Contains(keyword) || p.Nickname.Contains(keyword) || p.Mobile.Contains(keyword);
             }
             var orderBy = PaginationUtil.GetOrderBy(sortOrder);
             var userList = _userService.QueryPaging(pageNumber.Value, pageSize.Value, predicate, (queryable) =>
