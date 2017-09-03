@@ -15,9 +15,9 @@ namespace NKingime.Core.Config
         public static string IocMvcControllerAssemblys { get; private set; }
 
         /// <summary>
-        /// IoC 依赖注入程序集匹配前缀（不配置将加载所有的）
+        /// IoC 依赖注入匹配的程序集正则表达式（不配置将加载所有的）
         /// </summary>
-        public static string IocDependencyAssemblyPrefix { get; private set; }
+        public static string IocDependencyAssemblyPattern { get; private set; }
 
         /// <summary>
         /// 视图分页首页页码（默认第1页）
@@ -44,7 +44,7 @@ namespace NKingime.Core.Config
         {
             var appSettings = ConfigurationManager.AppSettings;
             IocMvcControllerAssemblys = appSettings["Ioc:MvcControllerAssemblys"];
-            IocDependencyAssemblyPrefix = appSettings["Ioc:DependencyAssemblyPrefix"];
+            IocDependencyAssemblyPattern = appSettings["Ioc:DependencyAssemblyPattern"];
             ViewPageNumber = appSettings["View:PageNumber"].ToInt(1);
             ViewPageSize = appSettings["View:PageSize"].ToInt(10);
 

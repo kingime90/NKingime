@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Web.Compilation;
 using NKingime.Core.Config;
 using NKingime.Core.Extentsion;
+using System.Text.RegularExpressions;
 
 namespace NKingime.Core.Ioc
 {
@@ -19,11 +20,12 @@ namespace NKingime.Core.Ioc
         /// <param name="builder"></param>
         protected override void Load(ContainerBuilder builder)
         {
-            var dependencyAssemblyPrefix = AppSettingConfig.IocDependencyAssemblyPrefix;
+            var dependencyAssemblyPrefix = AppSettingConfig.IocDependencyAssemblyPattern;
             var assemblies = BuildManager.GetReferencedAssemblies().Cast<Assembly>();
             if (!dependencyAssemblyPrefix.IsNullOrWhiteSpace())
             {
-                assemblies = assemblies.Where(p => p.FullName.StartsWith(dependencyAssemblyPrefix));
+                var regex = new Regex(dependencyAssemblyPrefix);
+                assemblies = assemblies.Where(p => regex.IsMatch(p.FullName));
             }
             var dependencyType = typeof(IDependency);
             builder.RegisterAssemblyTypes(assemblies.ToArray()).Where(type => dependencyType.IsAssignableFrom(type) && !type.IsAbstract).AsImplementedInterfaces().InstancePerLifetimeScope();

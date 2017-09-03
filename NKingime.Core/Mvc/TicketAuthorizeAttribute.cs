@@ -21,7 +21,7 @@ namespace NKingime.Core.Mvc
         /// <returns></returns>
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var authCookie = httpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+             var authCookie = httpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null)
             {
                 return false;
