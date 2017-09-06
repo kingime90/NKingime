@@ -32,8 +32,8 @@ ui.tabs = (function (mod) {
             } else {
                 tabItemHtml += '</a></li>';
             }
-            var panelHtml = '<div role="tabpanel" class="tab-pane ui-tabs-panel" id="' + panelId + '" style="width:100%;">' +
-	    					  '<iframe src="' + opts.tab.itemUrl + '" frameborder="0" style="overflow-x:hidden;overflow-y:hidden;width:100%;height:100%;" onload="ui.tabs.frameLoad(this);"></iframe>' +
+            var panelHtml = '<div role="tabpanel" class="tab-pane ui-tabs-panel" id="' + panelId + '" style="width:100%;height:100%;">' +
+	    					  '<iframe src="' + opts.tab.itemUrl + '" frameborder="0" style="overflow-x:hidden;overflow-y:hidden;width:100%;height:100%;"></iframe>' +
 	    				   '</div>';
             $(opts.container.tabSelector).append(tabItemHtml);
             $(opts.container.panelSelector).append(panelHtml);

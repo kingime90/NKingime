@@ -11,9 +11,10 @@
 </div>
 <table id="table"
        data-toggle="table"
-       data-height="500"
+       data-height="580"
        data-toolbar="#toolbar"
        data-show-refresh="true"
+       data-striped="true"
        data-show-toggle="true"
        data-show-columns="true"
        data-pagination="true"
@@ -57,6 +58,9 @@
         function enabledFormatter(value, row, index) {
 
         }
+        /*
+        * 查询参数
+        */
         function queryParams(params) {
             params = params || {};
             $toolbar.find('input[name]').each(function () {
@@ -64,13 +68,17 @@
             });
             return params;
         }
+        /*
+        * 数据请求
+        */
         function ajaxRequest(params) {
             apply.ajax.get({
-                url: '/User/Search', data: params.data, success: function (data, textStatus) {
+                url: '/User/Search',
+                data: params.data,
+                success: function (data, textStatus) {
                     params.success(data.Result);
                 }
             });
-            console.log(params);
         }
         /*
         * 查询

@@ -29,12 +29,23 @@ module.manage = (function (mod) {
         }
     };
     mod.setWidth = function () {
-        if ($(window).width() < 768) {
-            $('.sidebar').css({ left: -220 });
-            $('.all').css({ marginLeft: 0 });
+        var width = $(window).width();
+        var $sidebar = $('.sidebar');
+        var $all = $('.all');
+        if (width < 768) {
+            $sidebar.css({ left: -220 });
+            $all.css({ marginLeft: 0 });
         } else {
-            $('.sidebar').css({ left: 0 });
-            $('.all').css({ marginLeft: 220 });
+            $sidebar.css({ left: 0 });
+            $all.css({ marginLeft: 220 });
+        }
+        var sideleft = $('.sidebar').offset().left;
+        var sidewidth = $sidebar.width();
+        var $maincontent = $('.maincontent');
+        if (sideleft < 0) {
+            $maincontent.width(width);
+        } else {
+            $maincontent.width(width - sidewidth);
         }
     };
     mod.setScrollToTop = function () {
@@ -47,14 +58,26 @@ module.manage = (function (mod) {
     };
     mod.setSidebar = function () {
         $('[data-target="sidebar"]').click(function () {
-            var asideleft = $('.sidebar').offset().left;
-            if (asideleft == 0) {
-                $('.sidebar').animate({ left: -220 });
-                $('.all').animate({ marginLeft: 0 });
+            var $sidebar = $('.sidebar');
+            var $all = $('.all');
+            var sideleft = $sidebar.offset().left;
+            if (sideleft == 0) {
+                sideleft = -220;
+                $sidebar.animate({ left: sideleft });
+                $all.animate({ marginLeft: 0 });
             }
             else {
-                $('.sidebar').animate({ left: 0 });
-                $('.all').animate({ marginLeft: 220 });
+                sideleft = 0;
+                $sidebar.animate({ left: sideleft });
+                $all.animate({ marginLeft: 220 });
+            }
+            var width = $(window).width();
+            var sidewidth = $sidebar.width();
+            var $maincontent = $('.maincontent');
+            if (sideleft < 0) {
+                $maincontent.width(width);
+            } else {
+                $maincontent.width(width - sidewidth);
             }
         });
         $('.has-sub>a').click(function () {
