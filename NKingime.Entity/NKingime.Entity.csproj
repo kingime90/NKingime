@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\DataDict.cs" />
+    <Compile Include="Mapping\DataDictSort.cs" />
     <Compile Include="Mapping\Module.cs" />
     <Compile Include="Mapping\Role.cs" />
     <Compile Include="Mapping\User.cs" />

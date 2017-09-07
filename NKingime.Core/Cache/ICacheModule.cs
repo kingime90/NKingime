@@ -19,10 +19,10 @@ namespace NKingime.Core.Cache
         bool Enabled { get; }
 
         /// <summary>
-        /// 缓存键
+        /// 缓存分类
         /// </summary>
-        CacheType CacheKey { get; }
+        CacheSortFlag CacheSort { get; }
 
-        
+        void Load();
     }
 }

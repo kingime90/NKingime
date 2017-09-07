@@ -41,13 +41,13 @@ namespace NKingime.Core.Util
         /// <param name="propertyName">属性名称</param>
         /// <param name="orderBy">排序方式</param>
         /// <returns></returns>
-        public static IQueryable<T> PagingOrder<T>(IQueryable<T> queryable, string propertyName, OrderBy orderBy)
+        public static IQueryable<T> PagingOrder<T>(IQueryable<T> queryable, string propertyName, OrderByFlag orderBy)
         {
             //参数 p， p=>p.
             var param = Expression.Parameter(typeof(T), "p");
             var body = Expression.Property(param, propertyName);
             dynamic keySelector = Expression.Lambda(body, param);
-            if (orderBy == OrderBy.Desc)
+            if (orderBy == OrderByFlag.Desc)
             {
                 return Queryable.OrderByDescending(queryable, keySelector);
             }
@@ -62,9 +62,9 @@ namespace NKingime.Core.Util
         /// </summary>
         /// <param name="sortOrder"></param>
         /// <returns></returns>
-        public static OrderBy GetOrderBy(string sortOrder, OrderBy defaultValue = OrderBy.Asc)
+        public static OrderByFlag GetOrderBy(string sortOrder, OrderByFlag defaultValue = OrderByFlag.Asc)
         {
-            return EnumUtil.ConvertToEnum<OrderBy>(sortOrder, defaultValue, null);
+            return EnumUtil.ConvertToEnum<OrderByFlag>(sortOrder, defaultValue, null);
         }
 
         /// <summary>
@@ -94,11 +94,11 @@ namespace NKingime.Core.Util
         /// <param name="sortOrder">排序方式</param>
         /// <param name="orderSelector">排序选择委托</param>
         /// <returns></returns>
-        public static Pagination<TEntity> QueryPaging<TEntity>(IService<TEntity> service, Expression<Func<TEntity, bool>> predicate, int? pageNumber, int? pageSize, string sortOrder, Func<IQueryable<TEntity>, OrderBy, IQueryable<TEntity>> orderSelector) where TEntity : IEntity
+        public static Pagination<TEntity> QueryPaging<TEntity>(IService<TEntity> service, Expression<Func<TEntity, bool>> predicate, int? pageNumber, int? pageSize, string sortOrder, Func<IQueryable<TEntity>, OrderByFlag, IQueryable<TEntity>> orderSelector) where TEntity : IEntity
         {
-            pageNumber = PaginationUtil.GetViewPageNumber(pageNumber);
-            pageSize = PaginationUtil.GetViewPageSize(pageSize);
-            var orderBy = PaginationUtil.GetOrderBy(sortOrder);
+            pageNumber = GetViewPageNumber(pageNumber);
+            pageSize = GetViewPageSize(pageSize);
+            var orderBy = GetOrderBy(sortOrder);
             return service.QueryPaging(pageNumber.Value, pageSize.Value, predicate, (queryable) =>
             {
                 return orderSelector(queryable, orderBy);
@@ -118,9 +118,9 @@ namespace NKingime.Core.Util
         /// <returns></returns>
         public static Pagination<TEntity> QueryPaging<TEntity>(IService<TEntity> service, Expression<Func<TEntity, bool>> predicate, int? pageNumber, int? pageSize, string sortName, string sortOrder) where TEntity : IEntity
         {
-            return QueryPaging<TEntity>(service, predicate, pageNumber, pageSize, sortOrder, (queryable, orderBy) =>
+            return QueryPaging(service, predicate, pageNumber, pageSize, sortOrder, (queryable, orderBy) =>
             {
-                return PaginationUtil.PagingOrder(queryable, sortName, orderBy);
+                return PagingOrder(queryable, sortName, orderBy);
             });
         }
     }

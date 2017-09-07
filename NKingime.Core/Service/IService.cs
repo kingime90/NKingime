@@ -99,7 +99,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy);
+        List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy);
 
         /// <summary>
         /// 查询
@@ -123,7 +123,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy);
+        List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy);
 
         /// <summary>
         /// 查询
@@ -159,7 +159,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式</param>
         /// <returns></returns>
-        Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy);
+        Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy);
 
         /// <summary>
         /// 查询分页
@@ -180,7 +180,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式</param>
         /// <returns></returns>
-        Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy);
+        Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy);
 
         /// <summary>
         /// 查询分页

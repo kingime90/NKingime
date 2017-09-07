@@ -9,22 +9,22 @@ using System.Web.Mvc;
 namespace NKingime.Fight.Controllers
 {
     /// <summary>
-    /// 角色控制器
+    /// 数据字典分类控制器
     /// </summary>
-    public class RoleController : TicketController
+    public class DataDictSortController : TicketController
     {
         /// <summary>
-        /// 角色服务接口
+        /// 数据字典分类服务接口
         /// </summary>
-        private readonly IRoleService _roleService;
+        private readonly IDataDictSortService _dataDictSortService;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="roleService"></param>
-        public RoleController(IRoleService roleService)
+        public DataDictSortController(IDataDictSortService dataDictSortService)
         {
-            _roleService = roleService;
+            _dataDictSortService = dataDictSortService;
         }
 
         /// <summary>
@@ -49,13 +49,13 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public IHttpResponse Search(string keyword, int? pageNumber, int? pageSize, string sortName, string sortOrder)
         {
-            Expression<Func<Role, bool>> predicate = null;
+            Expression<Func<DataDictSort, bool>> predicate = null;
             if (keyword.Length > 0)
             {
                 predicate = p => p.Name.Contains(keyword);
             }
             //
-            var userList = QueryPaging(_roleService, predicate, pageNumber, pageSize, sortName, sortOrder);
+            var userList = QueryPaging(_dataDictSortService, predicate, pageNumber, pageSize, sortName, sortOrder);
             return OkResult(PaginationUtil.ConvertToPagination(userList));
         }
     }

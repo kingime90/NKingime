@@ -25,8 +25,10 @@ namespace NKingime.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<DataDict> DataDict { get; set; }
+        public virtual DbSet<DataDictSort> DataDictSort { get; set; }
         public virtual DbSet<Module> Module { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

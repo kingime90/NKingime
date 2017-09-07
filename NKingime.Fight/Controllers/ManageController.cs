@@ -1,9 +1,5 @@
 ﻿using NKingime.BusinessLogic.IService;
 using NKingime.Core.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NKingime.Fight.Controllers

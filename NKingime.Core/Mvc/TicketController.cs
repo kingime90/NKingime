@@ -1,13 +1,11 @@
 ﻿using NKingime.Core.Data;
 using NKingime.Core.Define;
 using NKingime.Core.Entity;
-using NKingime.Core.Extentsion;
 using NKingime.Core.Service;
 using NKingime.Core.Util;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Net;
 using System.Web.Mvc;
 
 namespace NKingime.Core.Mvc
@@ -75,9 +73,9 @@ namespace NKingime.Core.Mvc
         /// <param name="sortOrder">排序方式</param>
         /// <param name="orderSelector">排序选择委托</param>
         /// <returns></returns>
-        protected Pagination<TEntity> QueryPaging<TEntity>(IService<TEntity> service, Expression<Func<TEntity, bool>> predicate, int? pageNumber, int? pageSize, string sortOrder, Func<IQueryable<TEntity>, OrderBy, IQueryable<TEntity>> orderSelector) where TEntity : IEntity
+        protected Pagination<TEntity> QueryPaging<TEntity>(IService<TEntity> service, Expression<Func<TEntity, bool>> predicate, int? pageNumber, int? pageSize, string sortOrder, Func<IQueryable<TEntity>, OrderByFlag, IQueryable<TEntity>> orderSelector) where TEntity : IEntity
         {
-            return PaginationUtil.QueryPaging<TEntity>(service, predicate, pageNumber, pageSize, sortOrder, orderSelector);
+            return PaginationUtil.QueryPaging(service, predicate, pageNumber, pageSize, sortOrder, orderSelector);
         }
 
         /// <summary>

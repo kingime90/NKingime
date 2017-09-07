@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "数据字典列表";
+}
+<div id="toolbar">
+    <div class="form-inline" role="form">
+        <div class="form-group">
+            <input name="keyword" class="form-control" type="text" placeholder="名称" />
+        </div>
+        <button id="search" type="submit" class="btn btn-default">查询</button>
+    </div>
+</div>
+<table id="table"
+       data-toggle="table"
+       data-height="580"
+       data-toolbar="#toolbar"
+       data-show-refresh="true"
+       data-striped="true"
+       data-show-toggle="true"
+       data-show-columns="true"
+       data-pagination="true"
+       data-side-pagination="server"
+       data-page-number="1"
+       data-page-size="10"
+       data-page-list="[5, 10, 25, 50, 100]"
+       data-sort-name="Sort"
+       data-sort-order="asc"
+       data-query-params-type=""
+       data-query-params="queryParams"
+       data-ajax="ajaxRequest">
+    <thead>
+        <tr>
+            <th data-field="Key" data-sortable="true" data-width="200">键</th>
+            <th data-field="Value" data-sortable="true" data-width="200">值</th>
+            <th data-field="Remark" data-sortable="true">备注</th>
+            <th data-field="Enabled" data-align="center" data-sortable="true" data-width="100">是否启用</th>
+            <th data-align="right" data-field="Sort" data-sortable="true" data-width="100">序数</th>
+            <th data-align="center" data-field="CreatedTime" data-sortable="true" data-width="160">创建时间</th>
+        </tr>
+    </thead>
+</table>
+@section scripts{
+    <script type="text/javascript">
+        var $table = $('#table'), $toolbar = $('#toolbar'), $search = $('#search');
+        $(function () {
+            $search.click(function () {
+                $table.bootstrapTable('refresh');
+            });
+        });
+        /*
+        * 查询参数
+        */
+        function queryParams(params) {
+            params = params || {};
+            $toolbar.find('input[name]').each(function () {
+                params[$(this).attr('name')] = $(this).val();
+            });
+            return params;
+        }
+        /*
+        * 数据请求
+        */
+        function ajaxRequest(params) {
+            apply.ajax.get({
+                url: '/DataDict/Search',
+                data: params.data,
+                success: function (data, textStatus) {
+                    params.success(data.Result);
+                }
+            });
+        }
+        /*
+        * 查询
+        */
+        function btnSearch() {
+            $table.bootstrapTable('refresh');
+        }
+    </script>
+}

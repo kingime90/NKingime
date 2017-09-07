@@ -36,6 +36,8 @@ namespace NKingime.DataAccess.DbContext
             modelBuilder.Entity<User>().ToTable("User").HasKey(m => m.Id);
             modelBuilder.Entity<Module>().ToTable("Module").HasKey(m => m.Id);
             modelBuilder.Entity<Role>().ToTable("Role").HasKey(m => m.Id);
+            modelBuilder.Entity<DataDictSort>().ToTable("DataDictSort").HasKey(m => m.Id);
+            modelBuilder.Entity<DataDict>().ToTable("DataDict").HasKey(m => m.Id);
         }
     }
 }

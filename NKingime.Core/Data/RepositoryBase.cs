@@ -193,7 +193,7 @@ namespace NKingime.Core.Data
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
+        public List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy)
         {
             return Query(null, keySelector, orderBy);
         }
@@ -226,7 +226,7 @@ namespace NKingime.Core.Data
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
+        public List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy)
         {
             var queryable = DbEntities;
             if (predicate != null)
@@ -234,7 +234,7 @@ namespace NKingime.Core.Data
                 queryable = queryable.Where(predicate);
             }
             //
-            if (orderBy == OrderBy.Desc)
+            if (orderBy == OrderByFlag.Desc)
             {
                 queryable = queryable.OrderByDescending(keySelector);
             }
@@ -300,7 +300,7 @@ namespace NKingime.Core.Data
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
+        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy)
         {
             return QueryPaging(pageNumber, pageSize, null, keySelector, orderBy);
         }
@@ -327,7 +327,7 @@ namespace NKingime.Core.Data
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
+        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy)
         {
             var total = Count(predicate);
             var pagination = new Pagination<TEntity>(pageNumber, pageSize, total);
@@ -343,7 +343,7 @@ namespace NKingime.Core.Data
                 queryable = queryable.Where(predicate);
             }
             //
-            if (orderBy == OrderBy.Desc)
+            if (orderBy == OrderByFlag.Desc)
             {
                 queryable = queryable.OrderByDescending(keySelector);
             }

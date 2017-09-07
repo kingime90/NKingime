@@ -31,12 +31,12 @@ namespace NKingime.Model
     	/// <summary>
     	/// 
     	/// </summary>
-    	public Nullable<int> Sort { get; set; }
+    	public string Remark { get; set; }
         
     	/// <summary>
     	/// 
     	/// </summary>
-    	public string Remark { get; set; }
+    	public Nullable<int> Sort { get; set; }
         
     	/// <summary>
     	/// 

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace NKingime.Core.Define
 {
     /// <summary>
-    /// 缓存类型
+    /// 缓存分类
     /// </summary>
-    public enum CacheType
+    public enum CacheSortFlag
     {
 
     }

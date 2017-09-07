@@ -137,7 +137,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
+        public List<TEntity> Query<TKey>(Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy)
         {
             return EntityRepository.Query(keySelector, orderBy);
         }
@@ -170,7 +170,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param>
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
+        public List<TEntity> Query<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy)
         {
             return EntityRepository.Query(predicate, keySelector, orderBy);
         }
@@ -218,7 +218,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
+        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy)
         {
             return EntityRepository.QueryPaging(pageNumber, pageSize, keySelector, orderBy);
         }
@@ -245,7 +245,7 @@ namespace NKingime.Core.Service
         /// <param name="keySelector">用于从元素中提取键的函数</param
         /// <param name="orderBy">排序方式（默认 Asc）</param>
         /// <returns></returns>
-        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderBy orderBy)
+        public Pagination<TEntity> QueryPaging<TKey>(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> keySelector, OrderByFlag orderBy)
         {
             return EntityRepository.QueryPaging(pageNumber, pageSize, predicate, keySelector, orderBy);
         }

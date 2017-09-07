@@ -9,22 +9,22 @@ using System.Web.Mvc;
 namespace NKingime.Fight.Controllers
 {
     /// <summary>
-    /// 角色控制器
+    /// 数据字典控制器
     /// </summary>
-    public class RoleController : TicketController
+    public class DataDictController : TicketController
     {
         /// <summary>
-        /// 角色服务接口
+        /// 数据字典服务接口
         /// </summary>
-        private readonly IRoleService _roleService;
+        private readonly IDataDictService _dataDictService;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="roleService"></param>
-        public RoleController(IRoleService roleService)
+        public DataDictController(IDataDictService dataDictService)
         {
-            _roleService = roleService;
+            _dataDictService = dataDictService;
         }
 
         /// <summary>
@@ -43,19 +43,19 @@ namespace NKingime.Fight.Controllers
         /// <param name="searchText">关键字</param>
         /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">页大小</param>
-        /// <param name="sortName">排序名称</param>
-        /// <param name="sortOrder">排序方式</param>
+        /// <param name="Name">排序名称</param>
+        /// <param name="Order">排序方式</param>
         /// <returns></returns>
         [HttpGet]
-        public IHttpResponse Search(string keyword, int? pageNumber, int? pageSize, string sortName, string sortOrder)
+        public IHttpResponse Search(string keyword, int? pageNumber, int? pageSize, string sortName, string Order)
         {
-            Expression<Func<Role, bool>> predicate = null;
+            Expression<Func<DataDict, bool>> predicate = null;
             if (keyword.Length > 0)
             {
-                predicate = p => p.Name.Contains(keyword);
+                predicate = p => p.Value.Contains(keyword);
             }
             //
-            var userList = QueryPaging(_roleService, predicate, pageNumber, pageSize, sortName, sortOrder);
+            var userList = QueryPaging(_dataDictService, predicate, pageNumber, pageSize, sortName, Order);
             return OkResult(PaginationUtil.ConvertToPagination(userList));
         }
     }

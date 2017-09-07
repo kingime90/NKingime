@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataDict.cs">
+      <DependentUpon>NKingimeDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataDictSort.cs">
+      <DependentUpon>NKingimeDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Module.cs">
       <DependentUpon>NKingimeDb.tt</DependentUpon>
     </Compile>

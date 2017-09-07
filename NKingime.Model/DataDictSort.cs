@@ -15,7 +15,7 @@ namespace NKingime.Model
     /// <summary>
     /// 
     /// </summary>
-    public partial class User
+    public partial class DataDictSort
     {
         
     	/// <summary>
@@ -26,37 +26,32 @@ namespace NKingime.Model
     	/// <summary>
     	/// 
     	/// </summary>
-    	public string Username { get; set; }
+    	public string Code { get; set; }
         
     	/// <summary>
     	/// 
     	/// </summary>
-    	public string Password { get; set; }
+    	public string Name { get; set; }
         
     	/// <summary>
     	/// 
     	/// </summary>
-    	public string Nickname { get; set; }
+    	public string Remark { get; set; }
         
     	/// <summary>
     	/// 
     	/// </summary>
-    	public Nullable<byte> Gender { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public string Mobile { get; set; }
-        
-    	/// <summary>
-    	/// 
-    	/// </summary>
-    	public Nullable<System.DateTime> RegisterTime { get; set; }
+    	public Nullable<int> Sort { get; set; }
         
     	/// <summary>
     	/// 
     	/// </summary>
     	public int Enabled { get; set; }
+        
+    	/// <summary>
+    	/// 
+    	/// </summary>
+    	public Nullable<int> CreatedBy { get; set; }
         
     	/// <summary>
     	/// 

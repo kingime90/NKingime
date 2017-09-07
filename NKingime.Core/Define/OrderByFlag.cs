@@ -4,7 +4,7 @@ namespace NKingime.Core.Define
     /// <summary>
     /// 排序方式
     /// </summary>
-    public enum OrderBy
+    public enum OrderByFlag
     {
         /// <summary>
         /// 升序
