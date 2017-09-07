@@ -45,7 +45,7 @@ namespace NKingime.DataAccess.Tests.IRepository
                 Gender = 1,
                 Mobile = "13535555555",
                 Enabled = 1,
-                RegisterDate = DateTime.Now
+                RegisterTime = DateTime.Now
             };
             var result = userRepository.Save(user, true);
             Assert.IsTrue(result > 0);
