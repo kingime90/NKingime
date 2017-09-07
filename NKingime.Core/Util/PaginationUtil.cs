@@ -1,7 +1,10 @@
 ﻿using NKingime.Core.Config;
+using NKingime.Core.Data;
 using NKingime.Core.Define;
 using NKingime.Core.Entity;
 using NKingime.Core.Extentsion;
+using NKingime.Core.Service;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -14,7 +17,7 @@ namespace NKingime.Core.Util
     {
 
         /// <summary>
-        /// 转换到分页
+        /// 转换Bootstrap分页
         /// </summary>
         /// <typeparam name="T">实体类型</typeparam>
         /// <param name="pagination">分页</param>
@@ -78,6 +81,47 @@ namespace NKingime.Core.Util
         public static int GetViewPageSize(int? pageSize)
         {
             return pageSize.IfNull(AppSettingConfig.ViewPageSize).Value;
+        }
+
+        /// <summary>
+        /// 查询分页 
+        /// </summary>
+        /// <typeparam name="TEntity">数据实体</typeparam>
+        /// <param name="service">服务接口</param>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="pageNumber">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="sortOrder">排序方式</param>
+        /// <param name="orderSelector">排序选择委托</param>
+        /// <returns></returns>
+        public static Pagination<TEntity> QueryPaging<TEntity>(IService<TEntity> service, Expression<Func<TEntity, bool>> predicate, int? pageNumber, int? pageSize, string sortOrder, Func<IQueryable<TEntity>, OrderBy, IQueryable<TEntity>> orderSelector) where TEntity : IEntity
+        {
+            pageNumber = PaginationUtil.GetViewPageNumber(pageNumber);
+            pageSize = PaginationUtil.GetViewPageSize(pageSize);
+            var orderBy = PaginationUtil.GetOrderBy(sortOrder);
+            return service.QueryPaging(pageNumber.Value, pageSize.Value, predicate, (queryable) =>
+            {
+                return orderSelector(queryable, orderBy);
+            });
+        }
+
+        /// <summary>
+        /// 查询分页
+        /// </summary>
+        /// <typeparam name="TEntity">数据实体</typeparam>
+        /// <param name="service">服务接口</param>
+        /// <param name="predicate">筛选条件</param>
+        /// <param name="pageNumber">页码</param>
+        /// <param name="pageSize">页大小</param>
+        /// <param name="sortName">排序名称</param>
+        /// <param name="sortOrder">排序方式</param>
+        /// <returns></returns>
+        public static Pagination<TEntity> QueryPaging<TEntity>(IService<TEntity> service, Expression<Func<TEntity, bool>> predicate, int? pageNumber, int? pageSize, string sortName, string sortOrder) where TEntity : IEntity
+        {
+            return QueryPaging<TEntity>(service, predicate, pageNumber, pageSize, sortOrder, (queryable, orderBy) =>
+            {
+                return PaginationUtil.PagingOrder(queryable, sortName, orderBy);
+            });
         }
     }
 }

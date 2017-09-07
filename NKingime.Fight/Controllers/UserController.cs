@@ -110,6 +110,10 @@ namespace NKingime.Fight.Controllers
             return View(user);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult List()
         {
@@ -128,21 +132,14 @@ namespace NKingime.Fight.Controllers
         [HttpGet]
         public IHttpResponse Search(string keyword, int? pageNumber, int? pageSize, string sortName, string sortOrder)
         {
-            pageNumber = PaginationUtil.GetViewPageNumber(pageNumber);
-            pageSize = PaginationUtil.GetViewPageSize(pageSize);
-            keyword = keyword.GetString();
-            sortOrder = sortOrder.GetString();
             Expression<Func<User, bool>> predicate = null;
             if (keyword.Length > 0)
             {
                 predicate = p => p.Username.Contains(keyword) || p.Nickname.Contains(keyword) || p.Mobile.Contains(keyword);
             }
-            var orderBy = PaginationUtil.GetOrderBy(sortOrder);
-            var userList = _userService.QueryPaging(pageNumber.Value, pageSize.Value, predicate, (queryable) =>
-             {
-                 return PaginationUtil.PagingOrder(queryable, sortName, orderBy);
-             });
-            return OkActionResponse(PaginationUtil.ConvertToPagination(userList));
+            //
+            var userList = QueryPaging(_userService, predicate, pageNumber, pageSize, sortName, sortOrder);
+            return OkResult(PaginationUtil.ConvertToPagination(userList));
         }
 
         /// <summary>
@@ -153,6 +150,7 @@ namespace NKingime.Fight.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session.Abandon();
             return Json(new { success = true });
         }
     }

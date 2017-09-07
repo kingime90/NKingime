@@ -47,7 +47,7 @@ namespace NKingime.Entity
         /// <summary>
         /// 
         /// </summary>
-        public Nullable<System.DateTime> RegisterDate { get; set; }
+        public Nullable<System.DateTime> RegisterTime { get; set; }
 
         /// <summary>
         /// 
