@@ -52,7 +52,7 @@ namespace NKingime.Fight.Controllers
             Expression<Func<Role, bool>> predicate = null;
             if (keyword.Length > 0)
             {
-                predicate = p => p.Name.Contains(keyword);
+                predicate = p => p.Name.Contains(keyword) || p.Remark.Contains(keyword);
             }
             //
             var userList = QueryPaging(_roleService, predicate, pageNumber, pageSize, sortName, sortOrder);

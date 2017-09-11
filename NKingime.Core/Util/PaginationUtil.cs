@@ -64,7 +64,7 @@ namespace NKingime.Core.Util
         /// <returns></returns>
         public static OrderByFlag GetOrderBy(string sortOrder, OrderByFlag defaultValue = OrderByFlag.Asc)
         {
-            return EnumUtil.ConvertToEnum<OrderByFlag>(sortOrder, defaultValue, null);
+            return EnumUtil.ConvertToEnum(sortOrder, defaultValue, null);
         }
 
         /// <summary>

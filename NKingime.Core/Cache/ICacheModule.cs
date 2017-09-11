@@ -12,17 +12,31 @@ namespace NKingime.Core.Cache
     /// </summary>
     public interface ICacheModule
     {
-
         /// <summary>
-        /// 是否启用
+        /// 优先级
         /// </summary>
-        bool Enabled { get; }
+        int Priority { get; }
 
         /// <summary>
         /// 缓存分类
         /// </summary>
         CacheSortFlag CacheSort { get; }
 
+        /// <summary>
+        /// 获取是否启用
+        /// </summary>
+        /// <returns></returns>
+        bool GetEnabled();
+
+        /// <summary>
+        /// 获取缓存键
+        /// </summary>
+        /// <returns></returns>
+        string GetCacheKey();
+
+        /// <summary>
+        /// 加载
+        /// </summary>
         void Load();
     }
 }

@@ -52,7 +52,7 @@ namespace NKingime.Fight.Controllers
             Expression<Func<DataDictSort, bool>> predicate = null;
             if (keyword.Length > 0)
             {
-                predicate = p => p.Name.Contains(keyword);
+                predicate = p => p.Code.Contains(keyword) || p.Name.Contains(keyword) || p.Remark.Contains(keyword);
             }
             //
             var userList = QueryPaging(_dataDictSortService, predicate, pageNumber, pageSize, sortName, sortOrder);
