@@ -1,10 +1,12 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using System.Linq;
 using System.Reflection;
 using System.Web.Compilation;
 using NKingime.Core.Config;
 using NKingime.Core.Extentsion;
 using System.Text.RegularExpressions;
+
 
 namespace NKingime.Core.Ioc
 {
@@ -21,7 +23,8 @@ namespace NKingime.Core.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             var dependencyAssemblyPrefix = AppSettingConfig.IocDependencyAssemblyPattern;
-            var assemblies = BuildManager.GetReferencedAssemblies().Cast<Assembly>();
+            //var assemblies = BuildManager.GetReferencedAssemblies().Cast<Assembly>();
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Cast<Assembly>();
             if (!dependencyAssemblyPrefix.IsNullOrWhiteSpace())
             {
                 var regex = new Regex(dependencyAssemblyPrefix);

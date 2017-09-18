@@ -1,4 +1,5 @@
 ﻿using NKingime.Core.Define;
+using NKingime.Core.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace NKingime.Core.Cache
     /// <summary>
     /// 缓存模块接口
     /// </summary>
-    public interface ICacheModule
+    public interface ICacheModule : IDependency
     {
         /// <summary>
         /// 优先级
