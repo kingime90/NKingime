@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using NKingime.Core.Util;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -9,13 +10,15 @@ namespace NKingime.Fight
     {
         protected void Application_Start()
         {
+            RequiredConfig.Register();
+            LoggerUtil.InfoAsync("站点启动中...");
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             IocContainerConfig.Register();
-            DataAccessConfig.Register();
+            LoggerUtil.InfoAsync("站点启动完成...");
         }
     }
 }

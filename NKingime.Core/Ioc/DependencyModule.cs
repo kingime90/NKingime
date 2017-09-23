@@ -6,7 +6,7 @@ using System.Web.Compilation;
 using NKingime.Core.Config;
 using NKingime.Core.Extentsion;
 using System.Text.RegularExpressions;
-
+using NKingime.Core.Util;
 
 namespace NKingime.Core.Ioc
 {
@@ -32,6 +32,7 @@ namespace NKingime.Core.Ioc
             }
             var dependencyType = typeof(IDependency);
             builder.RegisterAssemblyTypes(assemblies.ToArray()).Where(type => dependencyType.IsAssignableFrom(type) && !type.IsAbstract).AsImplementedInterfaces().InstancePerLifetimeScope();
+            LoggerUtil.Info($"Ioc模块[{nameof(DependencyModule)}]注册完成");
         }
     }
 }

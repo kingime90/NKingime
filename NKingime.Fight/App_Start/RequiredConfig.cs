@@ -1,21 +1,23 @@
 ﻿using NKingime.Core.Data;
+using NKingime.Core.Log;
 using NKingime.DataAccess.DbContext;
 
 namespace NKingime.Fight
 {
     /// <summary>
-    /// 数据访问配置
+    /// 必要的配置
     /// </summary>
-    public class DataAccessConfig
+    public class RequiredConfig
     {
 
         /// <summary>
-        /// 注册数据访问配置
+        /// 注册必要的配置
         /// </summary>
         public static void Register()
         {
             UnitOfWorkContextManage.Register(RegisterWorkContext);
             DbContextManage.Register(RegisterDbContext);
+            LoggerManage.Register(RegisterLogger);
         }
 
         /// <summary>
@@ -34,6 +36,15 @@ namespace NKingime.Fight
         public static NKingimeDb RegisterDbContext()
         {
             return new NKingimeDb();
+        }
+
+        /// <summary>
+        /// 注册日志记录器
+        /// </summary>
+        /// <returns></returns>
+        public static ILogger RegisterLogger()
+        {
+            return new Log4NetLogger();
         }
     }
 }

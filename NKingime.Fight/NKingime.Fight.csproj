@@ -226,7 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\DataAccessConfig.cs" />
+    <Compile Include="App_Start\RequiredConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IocContainerConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -317,6 +317,9 @@
     <Content Include="static\css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="static\css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="static\css\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Config\log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="static\js\jquery-1.10.2.intellisense.js" />
     <Content Include="static\js\bootstrap.colorpicker\bootstrap-colorpicker.min.js" />
     <Content Include="static\js\bootstrap.datepicker\js\bootstrap-datepicker.min.js" />

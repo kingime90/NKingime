@@ -2,6 +2,7 @@
 using Autofac.Integration.Mvc;
 using NKingime.Core.Config;
 using NKingime.Core.Extentsion;
+using NKingime.Core.Util;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -26,6 +27,7 @@ namespace NKingime.Core.Ioc
                 var assemblies = mvcControllerAssemblys.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(p => Assembly.Load(p)).ToArray();
                 builder.RegisterControllers(assemblies);
             }
+            LoggerUtil.Info($"Ioc模块[{nameof(MvcControllerModule)}]注册完成");
         }
     }
 }

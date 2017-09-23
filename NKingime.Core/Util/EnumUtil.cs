@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace NKingime.Core.Util
 {
     /// <summary>
-    /// 枚举工具
+    /// 枚举应用
     /// </summary>
-    public class EnumUtil
+    public static class EnumUtil
     {
 
         /// <summary>

@@ -3,9 +3,9 @@
 namespace NKingime.Core.Util
 {
     /// <summary>
-    /// 参数工具
+    /// 参数应用
     /// </summary>
-    public class ArgumentUtil
+    public static class ArgumentUtil
     {
 
         /// <summary>

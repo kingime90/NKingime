@@ -11,9 +11,9 @@ using System.Linq.Expressions;
 namespace NKingime.Core.Util
 {
     /// <summary>
-    /// 分页工具
+    /// 分页应用
     /// </summary>
-    public class PaginationUtil
+    public static class PaginationUtil
     {
 
         /// <summary>

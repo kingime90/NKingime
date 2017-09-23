@@ -6,9 +6,9 @@ using System;
 namespace NKingime.Core.Util
 {
     /// <summary>
-    /// Json工具
+    /// Json应用
     /// </summary>
-    public class JsonUtil
+    public static class JsonUtil
     {
 
         /// <summary>
