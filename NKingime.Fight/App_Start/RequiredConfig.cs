@@ -17,7 +17,6 @@ namespace NKingime.Fight
         {
             UnitOfWorkContextManage.Register(RegisterWorkContext);
             DbContextManage.Register(RegisterDbContext);
-            LoggerManage.Register(RegisterLogger);
         }
 
         /// <summary>

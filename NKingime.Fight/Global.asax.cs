@@ -1,4 +1,5 @@
-﻿using NKingime.Core.Util;
+﻿using NKingime.Core.Proxy;
+using NKingime.Core.Util;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -10,6 +11,7 @@ namespace NKingime.Fight
     {
         protected void Application_Start()
         {
+            ProxyManage.RegisterAll();
             RequiredConfig.Register();
             LoggerUtil.InfoAsync("站点启动中...");
             AreaRegistration.RegisterAllAreas();

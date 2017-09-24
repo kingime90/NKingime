@@ -1,4 +1,5 @@
 ﻿using NKingime.Core.Ioc;
+using NKingime.Core.Proxy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace NKingime.Core.Log
     /// <summary>
     /// 日志记录器接口
     /// </summary>
-    public interface ILogger
+    public interface ILogger : IProxyDependency
     {
 
         /// <summary>

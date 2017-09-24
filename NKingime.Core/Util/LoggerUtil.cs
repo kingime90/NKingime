@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using NKingime.Core.Ioc;
 using NKingime.Core.Log;
+using NKingime.Core.Proxy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,15 @@ namespace NKingime.Core.Util
     /// </summary>
     public static class LoggerUtil
     {
+
+        /// <summary>
+        /// 日志记录器接口
+        /// </summary>
         private static readonly ILogger logger;
 
         static LoggerUtil()
         {
-            logger = LoggerManage.Logger();
+            logger = ProxyManage.GetInstance<ILogger>();
         }
 
         /// <summary>
@@ -48,7 +53,7 @@ namespace NKingime.Core.Util
         {
             Task.Run(() =>
             {
-                logger.Debug(message);
+                Debug(message);
             });
 
         }
@@ -62,7 +67,7 @@ namespace NKingime.Core.Util
         {
             Task.Run(() =>
             {
-                logger.Debug(message, exception);
+                Debug(message, exception);
             });
         }
 
@@ -93,7 +98,7 @@ namespace NKingime.Core.Util
         {
             Task.Run(() =>
             {
-                logger.Error(message);
+                Error(message);
             });
         }
 
@@ -106,7 +111,7 @@ namespace NKingime.Core.Util
         {
             Task.Run(() =>
             {
-                logger.Error(message, exception);
+                Error(message, exception);
             });
         }
 
@@ -137,7 +142,7 @@ namespace NKingime.Core.Util
         {
             Task.Run(() =>
             {
-                logger.Info(message);
+                Info(message);
             });
         }
 
@@ -150,7 +155,7 @@ namespace NKingime.Core.Util
         {
             Task.Run(() =>
             {
-                logger.Info(message, exception);
+                Info(message, exception);
             });
         }
     }

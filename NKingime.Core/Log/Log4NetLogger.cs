@@ -9,8 +9,15 @@ namespace NKingime.Core.Log
     /// </summary>
     public class Log4NetLogger : ILogger
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
         private static readonly ILog logger;
 
+        /// <summary>
+        /// 
+        /// </summary>
         static Log4NetLogger()
         {
             logger = LogManager.GetLogger("Infrastructure");
