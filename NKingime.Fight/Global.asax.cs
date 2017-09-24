@@ -11,9 +11,9 @@ namespace NKingime.Fight
     {
         protected void Application_Start()
         {
-            ProxyManage.RegisterAll();
-            RequiredConfig.Register();
+            ProxyManage.Register();
             LoggerUtil.InfoAsync("站点启动中...");
+            RequiredConfig.Register();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

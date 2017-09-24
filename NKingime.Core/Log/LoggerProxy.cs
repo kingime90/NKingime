@@ -7,8 +7,16 @@ namespace NKingime.Core.Log
     /// <summary>
     /// 日志记录器注册
     /// </summary>
-    public class LoggerProxy : ProxyBase<ILogger>
+    public class LoggerProxy : RegisterProxy<ILogger>
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public LoggerProxy() : base()
+        {
+            
+        }
 
         /// <summary>
         /// 优先级（升序）

@@ -23,7 +23,7 @@ namespace NKingime.Core.Util
 
         static LoggerUtil()
         {
-            logger = ProxyManage.GetInstance<ILogger>();
+            logger = RegisterProxy.GetInstance<ILogger>();
         }
 
         /// <summary>

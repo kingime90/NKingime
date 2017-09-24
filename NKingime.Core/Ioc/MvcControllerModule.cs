@@ -27,7 +27,7 @@ namespace NKingime.Core.Ioc
                 var assemblies = mvcControllerAssemblys.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(p => Assembly.Load(p)).ToArray();
                 builder.RegisterControllers(assemblies);
             }
-            LoggerUtil.Info($"Ioc模块[{nameof(MvcControllerModule)}]注册完成");
+            LoggerUtil.InfoAsync($"Ioc模块[{typeof(MvcControllerModule).FullName}]注册完成");
         }
     }
 }

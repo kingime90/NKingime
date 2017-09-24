@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace NKingime.Core.Proxy
 {
     /// <summary>
@@ -10,9 +8,9 @@ namespace NKingime.Core.Proxy
     {
 
         /// <summary>
-        /// 优先级（升序）
+        /// 是否启用
         /// </summary>
-        int Priority { get; }
+        bool Enabled { get; }
 
         /// <summary>
         /// 存储和检索键
@@ -20,9 +18,13 @@ namespace NKingime.Core.Proxy
         string Key { get; }
 
         /// <summary>
+        /// 优先级（升序）
+        /// </summary>
+        int Priority { get; }
+
+        /// <summary>
         /// 注册
         /// </summary>
-        /// <param name="registerProxys">注册过的代理</param>
-        void Register(Dictionary<string, Func<IProxyDependency>> registerProxys);
+        void Register();
     }
 }
